@@ -1,0 +1,24 @@
+// This is the Google App Script code which should be added to your spreadsheet to store the response
+
+function doPost(e) {
+  var sheet = SpreadsheetApp.openById('1a924BI4Tw4PVMS8CBT9aJ_ygn7NHMXdmpIV0gQ66Ye8').getActiveSheet();
+  var newRow = sheet.getLastRow() + 1;
+  
+  var currentDate = new Date(); // Get current date
+  
+  var fullName = e.parameter.fullname;
+  var email = e.parameter.email;
+  var mobileNumber = e.parameter.mobilenumber;
+  var subject = e.parameter.subject;
+  var message = e.parameter.message;
+  
+  sheet.getRange(newRow, 1).setValue(currentDate);
+  sheet.getRange(newRow, 2).setValue(fullName);
+  sheet.getRange(newRow, 3).setValue(email);
+  sheet.getRange(newRow, 4).setValue(mobileNumber);
+  sheet.getRange(newRow, 5).setValue(subject);
+  sheet.getRange(newRow, 6).setValue(message);
+  
+  // Return a response to the form submission
+  return ContentService.createTextOutput('Form submitted successfully');
+}
