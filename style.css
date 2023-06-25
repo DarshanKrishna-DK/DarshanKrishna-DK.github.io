@@ -206,7 +206,7 @@ span{
     padding: 2.5rem;
     border-radius: 20px;
     box-shadow: 0px 0px 20px var(--main-color);
-    animation: floatImage 4s ease-in-out infinite;
+    /* animation: floatImage 4s ease-in-out infinite; */
 }
 
 .about-content p::first-letter{
