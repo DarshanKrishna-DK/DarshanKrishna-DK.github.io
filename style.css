@@ -50,12 +50,31 @@ section{
     border-bottom: .1rem solid rgba(0,0,0, .2);
 }
 
-.logo{
-    font-size: 2.5rem;
-    color: var(--text-color);
-    font-weight: 600;
-    cursor: default;
-}
+.button {
+    letter-spacing: 2px;
+    text-decoration: none;
+    font-size: 2rem;
+    color: transparent;
+    position: relative;
+    -webkit-text-stroke: 1px var(--text-color);
+  }
+  
+.hover-text {
+    position: absolute;
+    box-sizing: border-box;
+    color: var(--main-color);
+    width: 0%;
+    inset: 0;
+    border-right: 6px solid var(--main-color);
+    overflow: hidden;
+    transition: 0.6s;
+    -webkit-text-stroke: 1px var(--main-color);
+  }
+
+.button:hover .hover-text {
+    width: 100%;
+    filter: drop-shadow(0px 0px 20px var(--main-color));
+  }
 
 .navbar a{
     font-size: 1.7rem;
@@ -567,3 +586,13 @@ span{
         margin-top: 2rem;
     }
 }
+
+.button {
+    margin: 0;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    border: none;
+  }
+  
+  
