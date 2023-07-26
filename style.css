@@ -84,12 +84,6 @@ section{
 
 .navbar a:hover, .navbar a.active{
     color: var(--main-color);
-    /* height: 100%;
-    width: 100%;
-    background: rgb(92, 114, 113);
-    padding: 10px;
-    border-radius: 20px;
-    transition: .4 ease; */
 }
 
 #menu-icon{
@@ -194,10 +188,6 @@ span{
     background: var(--second-bg-color);
 }
 
-/* .about-img img{
-    width: 35vw;
-} */
-
 .heading{
     text-align: center;
     font-size: 4.5rem;
@@ -207,10 +197,6 @@ span{
     text-align: center;
     line-height: 1.2;
 }
-
-/* .about-content h3{
-    font-size: 2.6rem;
-} */
 
 .about-content p{
     font-size: 1.7rem;
@@ -225,7 +211,6 @@ span{
     padding: 2.5rem;
     border-radius: 20px;
     box-shadow: 0px 0px 20px var(--main-color);
-    /* animation: floatImage 4s ease-in-out infinite; */
 }
 
 .about-content p::first-letter{
