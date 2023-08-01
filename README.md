@@ -1,6 +1,6 @@
 # DarshanKrishna-DK.github.io
 
-This repository contains the source code for my personal portfolio website. The website showcases my skills, projects, and experiences to potential employers, clients, and collaborators. It is designed to highlight my achievements and provide insights into my expertise.
+This repository contains the source code for my personal portfolio website. The website showcases my skills and projects to potential employers, clients, and collaborators. It is designed to highlight my achievements and provide insights into my expertise.
 
 ## Table of Contents
 
@@ -28,9 +28,5 @@ To set up the project locally on your machine, follow these steps:
 ## Contributions:
 
 I welcome contributions and feedback to improve this portfolio website. If you have any suggestions, bug reports, or new features to add, please create a pull request or open an issue.
-
-## License:
-
-This project is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute the code for personal or commercial purposes.
 
 Thank you for visiting my portfolio website! I hope you find it informative and engaging. If you have any questions or would like to connect, feel free to reach out via the contact details provided on the website.
