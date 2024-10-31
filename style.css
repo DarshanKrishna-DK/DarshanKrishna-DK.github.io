@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+text-decoration: none;
+border: none;
+outline: none;
+scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  font-family: inherit;
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+:root{
+    --bg-color: #0b0b0b;
+    --second-bg-color: #0b081e;
+    --text-color: #fff;
+    --main-color: rgb(233, 171, 250);
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+body{
+    position: relative;
+    /* background: liner-gradient(to bottom, #0b0b0b, rgba(54, 2, 54)); */
+    background: linear-gradient(to bottom, var(--bg-color), rgba(54, 2, 54));
+    color: var(--text-color);
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+  ::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+  
+/* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #791b97;
+    border-radius: 10px;
+}
+
+a{
+    color: var(--text-color);
+    text-decoration: none;
+}
+  
+ul{
+    list-style: none;
+}
+
+section{
+    /* background: url(./media/WhatsApp\ Image\ 2024-10-31\ at\ 19.23.56.jpeg) no-repeat;
+    background-size: cover;
+    background-position: center; */
+    min-height: 100vh;
+    /* padding: 10rem 9% 2rem; */
+}
+
+
+/* NavBar */
+
+.nav {
+    position: fixed;
+    top: 1.4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 30vw;
+    padding: 1rem 4%;
+    background: var(--second-bg-color);
+    border-radius: 5rem;
+    box-shadow: 0px 0px 30px rgba(227, 228, 237, 0.37);
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    z-index: 999;
+  }
+
+.nav-menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.7rem;
+}
+
+.nav-item{
+    padding: 1rem 2.5rem;
+    text-transform: uppercase;
+    border-radius: 5rem;
+}
+
+.nav-item a:hover{
+    color: var(--main-color);
+    transition: 0.5s ease-in-out;
+}
+
+/* Landing page */
+
+
+.home{
+    position: relative;
+    background: url(./media/home_bg.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+
+.home .box{
+    position: absolute;
+    top: 0;
+    min-width: 100vw;
+}
