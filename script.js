@@ -309,3 +309,25 @@ function appendChildren(parent, children) {
     parent.appendChild(el);
   });
 }
+
+
+// Infobox turn animation 
+
+const infoboxes = document.querySelectorAll('.infobox');
+
+infoboxes.forEach(infobox => {
+  infobox.addEventListener('mousemove', (event) => {
+    const rect = infobox.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const angleX = (x - rect.width / 2) / 15;
+    const angleY = (y - rect.height / 2) / 15;
+
+    infobox.style.transform = `perspective(500px) rotateX(${angleY}deg) rotateY(${angleX}deg)`;
+  });
+
+  infobox.addEventListener('mouseleave', () => {
+    infobox.style.transform = 'perspective(500px) rotateX(0deg) rotateY(0deg)';
+  });
+});
