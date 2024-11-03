@@ -311,7 +311,7 @@ function appendChildren(parent, children) {
 }
 
 
-// Infobox turn animation 
+/*---------------- About section info box turn animation ----------------*/
 
 const infoboxes = document.querySelectorAll('.infobox');
 
@@ -355,5 +355,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     });
+  });
+});
+
+/*----------------Responsive Navbar----------------*/
+
+const Hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".nav-menu");
+const navItems = document.querySelectorAll(".nav-item");
+
+Hamburger.addEventListener("click", () => {
+  Hamburger.classList.toggle("active");
+  navMenu.classList.toggle("active");
+});
+
+navItems.forEach(link => {
+  link.addEventListener("click", () => {
+    Hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
   });
 });
