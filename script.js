@@ -375,3 +375,6 @@ navItems.forEach(link => {
     navMenu.classList.remove("active");
   });
 });
+
+let header = document.querySelector('header');
+header.classList.toggle('sticky', window.scrollY > 100);

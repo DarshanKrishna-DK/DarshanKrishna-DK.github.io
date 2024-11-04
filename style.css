@@ -43,7 +43,7 @@ body{
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 1rem;
 }
   
 /* Track */
@@ -377,7 +377,7 @@ section{
     height: 80px;
     margin: 0px 5px 0px 0px;
     border-radius: 4px;
-    font-size: 4rem;
+    font-size: 5rem;
     text-align: center;
     perspective: 200px;
   }
@@ -451,78 +451,6 @@ section{
     width: 50px;
     height: 40px;
     border-radius: 0px 0px 4px 4px;
-  }
-  
-  @media (max-width: 550px) {
-  
-    .flipdown {
-      width: 312px;
-      height: 70px;
-    }
-  
-    .flipdown .rotor {
-      font-size: 2.2rem;
-      margin-right: 3px;
-    }
-  
-    .flipdown .rotor,
-    .flipdown .rotor-leaf,
-    .flipdown .rotor-leaf-front,
-    .flipdown .rotor-leaf-rear,
-    .flipdown .rotor-top,
-    .flipdown .rotor-bottom,
-    .flipdown .rotor:after {
-      width: 30px;
-    }
-  
-    .flipdown .rotor-group {
-      padding-right: 20px;
-    }
-  
-    .flipdown .rotor-group:last-child {
-      padding-right: 0px;
-    }
-  
-    .flipdown .rotor-group-heading:before {
-      font-size: 0.8rem;
-      height: 20px;
-      line-height: 20px;
-    }
-  
-    .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):before,
-    .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):after {
-      left: 69px;
-    }
-  
-    .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):before {
-      bottom: 13px;
-      height: 8px;
-      width: 8px;
-    }
-  
-    .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):after {
-      bottom: 29px;
-      height: 8px;
-      width: 8px;
-    }
-  
-    .flipdown .rotor-leaf-front,
-    .flipdown .rotor-top {
-      line-height: 50px;
-    }
-  
-    .flipdown .rotor-leaf,
-    .flipdown .rotor {
-      height: 50px;
-    }
-  
-    .flipdown .rotor-leaf-front,
-    .flipdown .rotor-leaf-rear,
-    .flipdown .rotor-top,
-    .flipdown .rotor-bottom,
-    .flipdown .rotor:after {
-      height: 25px;
-    }
   }
 
 /* ----- Social Media Handles ----- */
@@ -743,10 +671,10 @@ section{
 
 /* ------ Prizes Section ----- */
 
-.prizes{
+/* .prizes{
   position: relative;
   max-height: 100vh;
-}
+} */
 
 .winners-container{
   display: flex;
@@ -830,10 +758,10 @@ section{
 
 /* Track Prizes */
 
-.track-prizes{
+/* .track-prizes{
   position: relative;
   max-height: 100vh;
-}
+} */
 
 .track-prizes .section-title{
   padding: 5rem 0 2rem 0; 
@@ -1220,6 +1148,10 @@ section{
 
 /* ----- FAQs ----- */
 
+.faq{
+  min-height: 100vh;
+}
+
 .faq .section-title{
   font-size: 5rem;
   margin-bottom: 4rem;
@@ -1326,11 +1258,6 @@ section{
   margin-bottom: 2rem;
 }
 
-.extra-info, .directions{
-  /* text-align: center; */
-  max-height: 25rem;
-}
-
 .extra-info{
   width: 30%;
 }
@@ -1373,6 +1300,7 @@ section{
   width: 70%;
   display: flex;
   overflow: hidden;
+  max-height: 25rem;
 }
 
 .directions h2{
@@ -1423,6 +1351,10 @@ section{
     .runners-up{
       width: 60%;
     }
+
+    .timeline{
+      max-width: 90%;
+    }
 }
 
 @media (max-width: 1100px) {
@@ -1452,6 +1384,10 @@ section{
     width: 100%;
   }
 
+  .timeline{
+    max-width: 100%;
+  }
+
 }
 
 @media (max-width:942px){
@@ -1464,8 +1400,27 @@ section{
     width: 100%;
   }
 
+  .host-container{
+    margin-top: 2rem;
+  }
+
+  .org-container img, .coorg-container img, .collab-container img{
+    width: 70px;
+    height: 70px;
+  }
+
+  .socials a{
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .socials a:last-child{
+    margin-bottom: 2rem;
+  }
+
   .countdown{
     min-width: 100vw;
+    margin: 0 auto;
   }
 
   .host-container{
@@ -1493,19 +1448,30 @@ section{
     width: 55%;
   }
 
+  .timeline{
+    max-width: 100%;
+  }
+
   .container{
-    background: red;
-    max-width: 33rem;
+    max-width: 35%;
   }
 
-  .left-container img{
-    left: 38rem;
+  .left-container{
+    padding-right: 4%;
   }
-
 }
 
 
 @media (max-width: 768px) {
+
+  html{
+    font-size: 52%;
+  }
+
+  .home-container{
+    top: 55%;
+  }
+
   .hamburger {
     display: block;
   }
@@ -1546,33 +1512,170 @@ section{
     backdrop-filter: blur(20px);
     left: 0;
   }
+
+  .socials{
+    flex-direction: row;
+    justify-content: space-around;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 2.5rem;
+  }
+
+  .socials a{
+    width: 3rem;
+    height: 3rem;
+    margin: 0;
+  }
+
+  .socials a:last-child{
+    margin-bottom: 0;
+  }
+
+  .event-info{
+    width: 100%;
+  }
+
+  .runners-up{
+    width: 100%;
+  }
+
+  .track-container{
+    width: 80%;
+    justify-content: space-around;
+  }
+
+  .leaderboard-bounty{
+    width: 100%;
+  }
+
+  .sponsor-category{
+    max-width: 100vw;
+  }
+
+  .accordion-container{
+    width: 70%;
+  }
+
+  .faq{
+    min-height: 100vh;
+  }
+
 }
 
 @media screen and (max-width: 600px) {
-  .timeline{
-    margin: 50px auto;
+
+  .host-container{
+    width: 90%;
+  }
+
+  .event-title{
+    font-size: 11rem;
+  }
+
+  .event-subtitle{
+    font-size: 1.8rem;
+  }
+
+  .flipdown {
+    width: 312px;
+    height: 70px;
+  }
+
+  .flipdown .rotor {
+    font-size: 4rem;
+    margin-right: 3px;
+  }
+
+  .flipdown .rotor,
+  .flipdown .rotor-leaf,
+  .flipdown .rotor-leaf-front,
+  .flipdown .rotor-leaf-rear,
+  .flipdown .rotor-top,
+  .flipdown .rotor-bottom,
+  .flipdown .rotor:after {
+    width: 30px;
+  }
+
+  .flipdown .rotor-group {
+    padding-right: 20px;
+  }
+
+  .flipdown .rotor-group:last-child {
+    padding-right: 0px;
+  }
+
+  .flipdown .rotor-group-heading:before {
+    font-size: 1.5rem;
+    height: 20px;
+    line-height: 20px;
+  }
+
+  .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):before,
+  .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):after {
+    left: 69px;
+  }
+
+  .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):before {
+    bottom: 13px;
+    height: 8px;
+    width: 8px;
+  }
+
+  .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):after {
+    bottom: 29px;
+    height: 8px;
+    width: 8px;
+  }
+
+  .flipdown .rotor-leaf-front,
+  .flipdown .rotor-top {
+    line-height: 50px;
+  }
+
+  .flipdown .rotor-leaf,
+  .flipdown .rotor {
+    height: 50px;
+  }
+
+  .flipdown .rotor-leaf-front,
+  .flipdown .rotor-leaf-rear,
+  .flipdown .rotor-top,
+  .flipdown .rotor-bottom,
+  .flipdown .rotor:after {
+    height: 25px;
+  }
+
+  .org-container h2, .coorg-container h2, .collab-container h2{
+    font-size: 1.4rem;
   }
 
   .timeline::after{
-    left: 31px;
+    left: 10rem;
   }
 
   .container{
-    width: 100%;
-    padding-left: 80px;
+    max-width: 90%;
+    padding-left: 8rem;
     padding-right: 25px;
+    left: 6.5rem;
   }
 
   .text-box{
-    font-size: 13px;
+    font-size: 2rem;
   }
 
   .text-box small{
     margin-bottom: 10px;
   }
 
+  .left-container{
+    margin-right: 30%;
+    margin-left: 0;
+  }
+
   .right-container{
-    left: 0;
+    margin-left: 0;
+    margin-right: 30%;
   }
 
   .left-container img, .right-container img{
@@ -1580,10 +1683,105 @@ section{
   }
 
   .left-container-arrow, .right-container-arrow{
-    border-right: 15px solid var(--text-color);
+    border-right: 15px solid #7d007d;
     border-left: 0;
-    left: -15px;
+    left: -14px;
   }
+
+  .about-content p{
+    font-size: 2rem;
+  }
+
+  .event-info{
+    width: 90%;
+  }
+
+  .infobox_one:last-child{
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    padding-top: 3rem;
+  }
+
+  .infobox_one:last-child .infobox{
+    width: 40%;
+  }
+
+  .infobox_one:last-child .infobox:first-child{
+    margin: 0;
+  }
+
+  .infobox_one .infobox:first-child{
+    margin: 0 0 3rem 0;
+  }
+
+  .infobox_one:first-child .infobox:last-child h3{
+    font-size: 3rem;
+  }
+
+  .venue{
+    margin-bottom: 0rem;
+  }
+
+  .runners-up{
+    flex-direction: column;
+  }
+
+  .prize-box{
+    padding: 2.5rem 4rem;
+  }
+
+  .runners-up{
+    margin-top: 2rem;
+  }
+
+  .runners-up .prize-box:first-child{
+    margin-bottom: 2rem;
+  }
+
+  .track-container{
+    margin-bottom: 1rem;
+  }
+
+  .track-bounty{
+    padding: 0;
+  }
+
+  .track-box{
+    box-shadow: 0 0 .5rem var(--text-color);
+  }
+
+  .track-box:nth-of-type(2), .track-box:nth-of-type(3), .track-box:nth-of-type(4){
+    margin-top: 1rem;
+  }
+
+  .leaderboard-prizes{
+    padding: 1.5rem;
+  }
+
+  .leaderboard-prizes h2{
+    font-size: 1.7rem;
+  }
+
+  .leaderboard-prizes p{
+    font-size: 1.5rem;
+  }
+
+  .accordion-container{
+    width: 80%;
+  }
+
+  .accordion-header{
+    font-size: 1.8rem;
+  }
+
+  .directions h2{
+    margin: 17rem 0 0 10rem;
+  }
+}
+
+@media (max-width: 460px){
+  /* /Leaderboard prizes and about section */
 }
 
 
