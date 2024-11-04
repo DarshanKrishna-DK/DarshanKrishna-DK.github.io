@@ -1003,16 +1003,17 @@ section{
 
 .timeline{
   position: relative;
-  max-width: 100rem;
+  max-width: 80vw;
   margin: 5rem auto 0 auto;
 }
 
 .container{
-  padding: 1rem 3rem 1rem 3.6rem;
-  max-width: 33.5rem;
+  position: relative;
+  padding: 1rem 0 1rem 3.6rem;
+  max-width: 40%;
   animation: movedown 1s linear forwards;
   opacity: 0;
-  left: 10rem;
+  margin: 0 auto;
 }
 
 @keyframes movedown{
@@ -1062,15 +1063,11 @@ section{
 }
 
 .left-container{
-  margin-left: 10rem;
+  margin-right: 50%;
 }
 
 .right-container{
   margin-left: 50%;
-}
-
-.left-container .text-box{
-  margin-right: 5rem;
 }
 
 .container img{
@@ -1083,7 +1080,6 @@ section{
   background: var(--text-color);
   box-shadow: 0 0 .5rem var(--bg-color);
 }
-
 
 .right-container img{
   left: -20px;
@@ -1498,8 +1494,12 @@ section{
   }
 
   .container{
-    /* background: red; */
-    max-width: 25rem;
+    background: red;
+    max-width: 33rem;
+  }
+
+  .left-container img{
+    left: 38rem;
   }
 
 }
