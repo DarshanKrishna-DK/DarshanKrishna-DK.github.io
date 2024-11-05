@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./register.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="shortcut icon" href="./media/favicon.png" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>GitSetGo</title>
+</head>
+<body>
+    <!------- Navbar ------->
+    <header class="nav">
+        <nav class="navbar">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                  <a class="active" href="./index.html#landing" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a href="./index.html#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                  <a href="./index.html#prizes" class="nav-link">Prizes</a>
+                </li>
+                <li class="nav-item">
+                  <a href="./index.html#schedule" class="nav-link">Timeline</a>
+                </li>
+                <li class="nav-item">
+                  <a href="./index.html#faq" class="nav-link">FAQS</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Register Now</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+
+    <!----- Registration Form ----->
+    <section class="registration" id="registration">
+        <h2 class="section-title">Register <span>Now</span></h2>
+          <form id="registration_form" action="" method="post" onsubmit="return validateForm()">
+            <div class="input-container">
+              <div class="input-box">
+                <input class="in" type="text" placeholder="Your Name"  name="name" required>
+                <input class="in" type="number" placeholder="Mobile Number" id="mobileNum" name="mobilenumber">
+              </div>
+
+              <div class="input-box">
+                <input class="in" type="text" placeholder="Class/ Semester" name="sem" required>
+                <input class="in" type="text" placeholder="College/ University" name="university" required>
+              </div>
+              
+              <input class="in" type="email" placeholder="Mail ID" name="emailid" required>
+              <input class="in" type="url" placeholder="Github Profile Link" name="githublink" required>
+
+              <div class="in">
+                <label>Prefered mode of participation: </label>
+                <input class="in" type="radio" name="consent" checked><label>Onsite</label>
+                <input class="in" type="radio" name="consent"><label>Online</label>
+              </div>
+              <input type="submit" value="Pay & Submit" class="reg-btn">
+            </div>
+          </form>
+    </section>
+    
+    
+    <!------- Footer ------->
+    <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-box-up">
+            <div class="extra-info">
+              <h2>Have a question?</h2>
+              <!-- <h3>We are here for help!</h3> -->
+              <div class="org-contact">
+                <p>Team EZHostz:</p>
+                <a href="mailto:ezhost.community@gmail.com">ezhost.community@gmail.com</a><br>
+                <p>Organisers:</p>  
+                <a href="mailto:darshankrishna2k2@gmail.com">darshankrishna2k2@gmail.com</a><br>
+                <a href="mailto:deepak1001110@gmail.com">deepak1001110@gmail.com</a><br>
+              </div>
+            </div>
+            <div class="directions">
+              <h2>Location</h2>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.280170146654!2d77.51145517454444!3d12.82516351807294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae41057dd66abf%3A0xfda823a3ca1775ea!2sDayananda%20Sagar%20Academy%20of%20Technology%20and%20Management%20(DSATM)!5e0!3m2!1sen!2sin!4v1730623137924!5m2!1sen!2sin" width="600" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+          <div class="footer-box-down">
+            <a href="./info-pages/t&c.html" target="_blank">Terms & Conditions</a>    
+            <p>&copy; GitSetGo. All rights reserved.</p>
+            <a href="./info-pages/privacy_policy.html" target="_blank">Privacy Policy</a>
+          </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
