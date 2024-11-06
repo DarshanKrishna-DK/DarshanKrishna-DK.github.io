@@ -11,6 +11,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    flex-wrap: wrap;
     padding: 5rem 3rem 4rem 3rem;
     margin: 0 auto;
     width: 40%;
@@ -33,6 +34,7 @@
 
 .input-box{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
   
@@ -89,17 +91,26 @@
 .input-container input[type="radio"]{
     margin-right: .5rem;
 }
-  
-.mode-box{
-    display: flex;
-    justify-content: space-between;
-    margin: 1rem 0;
-    background: red;
-}
+
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
+}
+
+.mode-box{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.modes{
+    width: 40%;
+    margin-left: 3rem;
+}
+
+.modes label{
+    margin-right: 1.5rem;
 }
 
 .reg-btn{
@@ -121,3 +132,51 @@ input[type="number"]::-webkit-outer-spin-button {
 .reg-btn:hover{
     box-shadow: 0 0 .8rem var(--main-color);
 }
+
+@media (max-width:1230px){
+    .input-container{
+        width: 45%;
+    }
+}
+
+@media (max-width:1140px){
+    .input-container{
+        width: 53%;
+    }
+}
+
+@media (max-width:980px){
+    .input-container{
+        width: 65%;
+    }
+}
+
+@media (max-width:730px){
+    .input-container{
+        width: 75%;
+    }
+}
+
+@media (max-width:620px){
+    .input-container{
+        width: 85%;
+    }
+}
+
+@media (max-width: 535px){
+    .input-box .in{
+        width: 100%;
+    }
+
+    .modes{
+        text-align: center;
+        width: 60%;
+        margin: 1rem 0 0;
+    }
+
+    .reg-btn{
+        width: 40%;
+    }
+
+}
+
