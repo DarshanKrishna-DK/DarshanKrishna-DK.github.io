@@ -1124,6 +1124,9 @@ section{
 
 .sponsor-category:nth-child(4) {
   animation-delay: 3s;
+}
+
+.sponsor-category:last-child{
   margin-bottom: 0;
 }
 
@@ -1785,8 +1788,59 @@ section{
   }
 }
 
-@media (max-width: 460px){
-  /* /Leaderboard prizes and about section */
+@media (max-width: 470px){
+
+  .infobox h3{
+    font-size: 2rem;
+  }
+
+  .infobox_one:first-child .infobox:last-child h3{
+    font-size: 2rem;
+  }
+
+  .infobox_one:first-child .infobox:last-child{
+    margin-bottom: 3rem;
+  }
+
+  .infobox_one:first-child .infobox:first-child{
+    margin: 0 0 5rem 0;
+  }
+
+  .date p, .venue p{
+    font-size: 1.7rem;
+    margin-left: 0;
+  }
+
+  .date img, .venue img{
+    width: 8%;
+  }
+
+  .date .img img{
+    width: 40px;
+    height: 40px;
+  }
+
+  .venue .img img{
+    width: 20px;
+    height: 40px;
+  }
+
+  .styled-button{
+    padding: 1.2rem 2rem;
+    font-size: 1.5rem;
+  }
+
+  .leaderboard-container{
+    width: 95%;
+  }
+
+  .leaderboard-bounty .section-title{
+    font-size: 3.5rem;
+  }
+
+  .leaderboard-prizes:last-child{
+    margin-top: 2rem;
+  }
 }
 
 
