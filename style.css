@@ -495,8 +495,8 @@ section{
 /* Register Now button */
 .styled-button {
     position: relative;
-    padding: 1.5rem 2.5rem;
-    font-size: 1.7rem;
+    padding: 1.5rem 4rem;
+    font-size: 1.9rem;
     font-weight: bold;
     color: var(--bg-color);
     background: linear-gradient(to bottom, #ffffff, #c2c2c2);
@@ -530,10 +530,10 @@ section{
     box-shadow: 0 0 1rem var(--text-color);
 }
 
-/* .styled-button:hover {
-    transform: translateY(-2px);
+.styled-button:hover {
+    /* transform: translateY(-2px); */
     box-shadow: 0 0 .5rem var(--text-color);
-} */
+}
 
 /* ------ About Event ----- */
 
