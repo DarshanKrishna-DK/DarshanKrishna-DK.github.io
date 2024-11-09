@@ -4,15 +4,49 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 3rem 0;
+    padding: 0 0 3rem 0;
 }
-  
+
+#team-details{
+    color: var(--main-color);
+    text-transform: uppercase;
+    padding: 0 0 .8rem 0;
+    border-bottom: 1px solid var(--main-color);
+    margin-bottom: .5rem;
+}
+
+.half{
+    width: 45%;
+}
+
+.gender-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#gender{
+    margin-right: 1rem;
+    width: 60%;
+    text-align: center;
+    font-size: 1.5rem;
+    background: transparent;
+    color: var(--main-color);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+#gender option {
+    outline: none;
+    background-color: var(--second-bg-color); /* Base background color */
+}
+
 .input-container{
     display: flex;
     flex-direction: column;
     position: relative;
     flex-wrap: wrap;
-    padding: 5rem 3rem 4rem 3rem;
+    padding: 4rem 3rem 4rem 3rem;
     margin: 0 auto;
     width: 40%;
 }
@@ -81,13 +115,6 @@
     color: var(--main-color);
 }
   
-.input-container .btn{
-    position: absolute;
-    top: 92.5%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-  
 .input-container input[type="radio"]{
     margin-right: .5rem;
 }
@@ -102,6 +129,7 @@ input[type="number"]::-webkit-outer-spin-button {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    padding: 0;
 }
 
 .modes{
@@ -131,6 +159,10 @@ input[type="number"]::-webkit-outer-spin-button {
   
 .reg-btn:hover{
     box-shadow: 0 0 .8rem var(--main-color);
+}
+
+#team-members-section{
+    display: none;
 }
 
 @media (max-width:1230px){

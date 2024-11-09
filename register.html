@@ -17,7 +17,7 @@
         <nav class="navbar">
             <ul class="nav-menu">
                 <li class="nav-item">
-                  <a class="active" href="./index.html#landing" class="nav-link">Home</a>
+                  <a href="./index.html#landing" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
                   <a href="./index.html#about" class="nav-link">About</a>
@@ -32,7 +32,7 @@
                   <a href="./index.html#faq" class="nav-link">FAQS</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Register Now</a>
+                  <a class="active" href="./register.html" class="nav-link">Register Now</a>
                 </li>
             </ul>
             <div class="hamburger">
@@ -48,15 +48,28 @@
     <section class="registration" id="registration">
         <h2 class="section-title">Register <span>Now</span></h2>
           <form id="registration_form" action="" method="post" onsubmit="return validateForm()">
-            <div class="input-container">
+            <!-- Team and Team Lead Details -->
+            <div class="input-container" id="leader-section">
+              
+              <div class="input-box" id="team-details">
+                <h2>Team Details</h2>
+              </div>
+              
               <div class="input-box">
-                <input class="in" type="text" placeholder="Your Name"  name="name" required>
-                <input class="in" type="number" placeholder="Mobile Number" id="mobileNum" name="mobilenumber">
+                <input class="in half" type="text" placeholder="Your Name"  name="name" required>
+                <input class="in half" type="number" placeholder="Mobile Number" id="mobileNum" name="mobilenumber" required>
               </div>
 
               <div class="input-box">
-                <input class="in" type="text" placeholder="Class/ Semester" name="sem" required>
-                <input class="in" type="text" placeholder="College/ University" name="university" required>
+                <div class="in gender-box half">
+                  <label for="gender">Gender</label>
+                  <select id="gender" name="gender" required>
+                    <option value="male" selected>Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Others</option>   
+                  </select>
+                </div>
+                <input class="in half" type="text" placeholder="College/ University" name="university" required>
               </div>
               
               <input class="in" type="email" placeholder="Mail ID" name="emailid" required>
@@ -68,7 +81,35 @@
                     <input class="in" type="radio" name="consent" checked><label>Onsite</label>
                     <input class="in" type="radio" name="consent"><label>Online</label>
                 </div>
+              </div>  
+              <button type="button" class="reg-btn" id="next-button">Continue</button> 
+            </div>
+            <!-- Team Members Details -->
+            <div class="input-container" id="team-members-section">
+              
+              <div class="in input-box" id="team-details">
+                <h2>Team Details</h2>
               </div>
+              
+              <div class="input-box">
+                <input class="in half" type="text" placeholder="Your Name"  name="name" required>
+                <input class="in half" type="number" placeholder="Mobile Number" id="mobileNum" name="mobilenumber" required>
+              </div>
+
+              <div class="input-box">
+                <div class="in gender-box half">
+                  <label for="gender">Gender</label>
+                  <select id="gender" name="gender" required>
+                    <option value="male" selected>Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Others</option>   
+                  </select>
+                </div>
+                <input class="in half" type="text" placeholder="College/ University" name="university" required>
+              </div>
+              
+              <input class="in" type="email" placeholder="Mail ID" name="emailid" required>
+              <input class="in" type="url" placeholder="Github Profile Link" name="githublink" required> 
               <input type="submit" value="Pay & Submit" class="reg-btn">
             </div>
           </form>
@@ -105,5 +146,16 @@
 
     <!-- JavaScript -->
     <script src="script.js"></script>
+
+    <script>
+      const nextButton = document.getElementById('next-button');
+const leaderSection = document.getElementById('leader-section');
+const teamMemberSection = document.getElementById('team-members-section');
+
+nextButton.addEventListener('click', () => {
+  leaderSection.style.display = 'none';
+  teamMemberSection.style.display = 'block';
+});
+  </script>
 </body>
 </html>
