@@ -7,7 +7,7 @@
     padding: 0 0 3rem 0;
 }
 
-#team-details{
+.detail-head{
     color: var(--main-color);
     text-transform: uppercase;
     padding: 0 0 .8rem 0;
@@ -15,17 +15,21 @@
     margin-bottom: .5rem;
 }
 
+.detail-head h2{
+    z-index: 80;
+}
+
 .half{
     width: 45%;
 }
 
-.gender-box{
+.drop-box{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-#gender{
+#drop{
     margin-right: 1rem;
     width: 60%;
     text-align: center;
@@ -36,7 +40,7 @@
     cursor: pointer;
 }
 
-#gender option {
+#drop option {
     outline: none;
     background-color: var(--second-bg-color); /* Base background color */
 }
@@ -64,6 +68,7 @@
     clip-path: polygon(26% 0, 66% 0, 92% 0, 100% 8%, 100% 92%, 91% 100%, 7% 100%, 0 92%, 0 0);
     background: rgba(189, 68, 233, 0.903);
     transition: all 1s ease-in-out;
+    z-index: 1;
 }
 
 .input-box{
@@ -84,11 +89,16 @@
     background: rgb(27, 27, 27);
     clip-path: polygon(26% 0, 31% 5%, 61% 5%, 66% 0, 92% 0, 100% 8%, 100% 92%, 91% 100%, 7% 100%, 0 92%, 0 0);
     animation: backglitch 50ms linear infinite;
+    z-index: 2;
 }
   
 .registration .input-box, .in, .reg-btn, .radio-input{
     z-index: 80;
     font-size: 1.5rem;
+}
+
+.spc-input-box{
+    flex-direction: column;
 }
   
 .input-container .in{
@@ -164,6 +174,10 @@ input[type="number"]::-webkit-outer-spin-button {
 #team-members-section{
     display: none;
 }
+
+
+
+/* #team-member-section  */
 
 @media (max-width:1230px){
     .input-container{

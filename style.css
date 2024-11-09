@@ -1342,6 +1342,13 @@ section{
 
 /* ----- Media Queries ----- */
 
+@media(min-width: 1335px) and (max-width: 1410px){
+  .nav{
+    width: 55%;
+    padding: 1.5rem 4%;
+  }
+}
+
 @media (max-width: 1340px)
 {
     html{
@@ -1354,7 +1361,7 @@ section{
 
     .nav{
       width: 55%;
-      padding: 2rem 4%;
+      padding: 1.5rem 4%;
     }
 
     .runners-up{

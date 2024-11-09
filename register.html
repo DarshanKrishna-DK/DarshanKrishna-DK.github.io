@@ -51,44 +51,46 @@
             <!-- Team and Team Lead Details -->
             <div class="input-container" id="leader-section">
               
-              <div class="input-box" id="team-details">
-                <h2>Team Details</h2>
+              <div class="input-box detail-head">
+                <h2>Team Lead Details</h2>
               </div>
               
               <div class="input-box">
-                <input class="in half" type="text" placeholder="Your Name"  name="name" required>
-                <input class="in half" type="number" placeholder="Mobile Number" id="mobileNum" name="mobilenumber" required>
+                <input class="in half" type="text" placeholder="Lead Name"  name="leadname" required>
+                <input class="in half" type="number" placeholder="Mobile Number" name="mobilenumber" required>
               </div>
 
               <div class="input-box">
-                <div class="in gender-box half">
-                  <label for="gender">Gender</label>
-                  <select id="gender" name="gender" required>
+                <div class="in drop-box half">
+                  <label for="leadgender">Gender</label>
+                  <select id="drop" name="leadgender" required>
                     <option value="male" selected>Male</option>
                     <option value="female">Female</option>
                     <option value="other">Others</option>   
                   </select>
                 </div>
-                <input class="in half" type="text" placeholder="College/ University" name="university" required>
+                <input class="in half" type="text" placeholder="College/ University" name="leaduniversity" required>
               </div>
               
-              <input class="in" type="email" placeholder="Mail ID" name="emailid" required>
-              <input class="in" type="url" placeholder="Github Profile Link" name="githublink" required>
+              <input class="in" type="email" placeholder="Mail ID" name="leademailid" required>
+              <input class="in" type="url" placeholder="Github Profile Link" name="leadgithublink" required>
 
-              <div class="in mode-box">
-                <label>Preferred mode of participation</label>
-                <div class="modes">
-                    <input class="in" type="radio" name="consent" checked><label>Onsite</label>
-                    <input class="in" type="radio" name="consent"><label>Online</label>
+              <div class="input-box">
+                <input class="in half" type="text" placeholder="Team Name" name="teamname" required>
+                <div class="in drop-box half">
+                  <label for="mode">Mode of Participation</label>
+                  <select id="drop" name="mode" required>
+                    <option value="onsite" selected>Onsite</option>
+                    <option value="online">Online</option>
+                  </select>
                 </div>
-              </div>  
+              </div> 
               <button type="button" class="reg-btn" id="next-button">Continue</button> 
             </div>
             <!-- Team Members Details -->
-            <div class="input-container" id="team-members-section">
-              
-              <div class="in input-box" id="team-details">
-                <h2>Team Details</h2>
+            <div class="input-container" id="team-members-section">              
+              <div class="input-box detail-head">
+                <h2>Team Members Details</h2>
               </div>
               
               <div class="input-box">
@@ -108,9 +110,11 @@
                 <input class="in half" type="text" placeholder="College/ University" name="university" required>
               </div>
               
-              <input class="in" type="email" placeholder="Mail ID" name="emailid" required>
+              <div class="input-box spc-input-box">
+                <input class="in" type="email" placeholder="Mail ID" name="emailid" required>
               <input class="in" type="url" placeholder="Github Profile Link" name="githublink" required> 
               <input type="submit" value="Pay & Submit" class="reg-btn">
+              </div>
             </div>
           </form>
     </section>
@@ -146,16 +150,5 @@
 
     <!-- JavaScript -->
     <script src="script.js"></script>
-
-    <script>
-      const nextButton = document.getElementById('next-button');
-const leaderSection = document.getElementById('leader-section');
-const teamMemberSection = document.getElementById('team-members-section');
-
-nextButton.addEventListener('click', () => {
-  leaderSection.style.display = 'none';
-  teamMemberSection.style.display = 'block';
-});
-  </script>
 </body>
 </html>
