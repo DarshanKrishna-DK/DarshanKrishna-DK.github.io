@@ -378,3 +378,20 @@ navItems.forEach(link => {
 
 let header = document.querySelector('header');
 header.classList.toggle('sticky', window.scrollY > 100);
+
+
+/*----------------Scroll Reveal----------------*/
+
+ScrollReveal({ reset: true });
+
+ScrollReveal({
+  reset: true,
+  distance: '80px',
+  duration: 1800,
+  delay: 200
+})
+
+ScrollReveal().reveal('.section-title', { origin: 'top'});
+ScrollReveal().reveal('.countdown', { origin: 'bottom'});
+ScrollReveal().reveal('.track-box:nth-child(1), .track-box:nth-child(2)', { origin: 'left'});
+ScrollReveal().reveal('.socials, .track-box:nth-child(3), .track-box:nth-child(4)', { origin: 'right'});

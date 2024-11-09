@@ -732,6 +732,7 @@ section{
   padding: 0 4rem;
   transform: translateY(100%);
   transition: .4s ease;
+  cursor: grab;
 }
 
 .prize-box:hover .prize-info{
@@ -741,7 +742,7 @@ section{
 .prize-info h1{
   font-size: 2.5rem;
   font-weight: 600;
-  color: var(--text-color);
+  color: var(--second-text-color);
   text-shadow: 0 0 .2rem var(--bg-color);
   text-transform: uppercase;
 }
@@ -749,8 +750,8 @@ section{
 .prize-info p{
   font-size: 3.5rem;
   font-weight: 600;
-  color: var(--bg-color);
-  text-shadow: 0 0 .4rem var(--text-color);
+  color: var(--second-text-color);
+  text-shadow: 0 0 .4rem var(--bg-color);
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-top: 1rem;
@@ -836,8 +837,8 @@ section{
 }
 
 .track-bounty img{
-  width: 22%;
-  max-height: 100%;
+  width: 17%;
+  /* max-height: 10%; */;
 }
 
 .special{
