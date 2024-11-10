@@ -15,7 +15,7 @@
     margin-bottom: .5rem;
 }
 
-.detail-head h2{
+.detail-head h2, .detail-head button, .submit-btn{
     z-index: 80;
 }
 
@@ -72,6 +72,7 @@
 }
 
 .input-box{
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -169,10 +170,53 @@ input[type="number"]::-webkit-outer-spin-button {
   
 .reg-btn:hover{
     box-shadow: 0 0 .8rem var(--main-color);
+    translate: 0 -.1rem;
 }
 
 #team-members-section{
     display: none;
+}
+
+.team-member-add .input-box{
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 3rem;
+    margin: 1rem 0;
+    border: 1px solid var(--main-color);
+    border-radius: 1rem;
+}
+
+.add-member{
+    font-size: 2rem;
+    border-radius: 50%;
+    padding: .5rem .7rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .3s ease;
+    color: var(--main-color);
+    background: transparent;
+    box-shadow: 0 0 .4rem var(--text-color);
+}
+
+.add-member:hover{
+    box-shadow: 0 0 .8rem var(--text-color);
+    /* translate: 0 -.1rem; */
+}
+
+.team-member-1 .input-box h2, .team-member-2 .input-box h2{
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--main-color);
+    text-transform: uppercase;
+}
+
+.team-member-1 .input-box:first-child, .team-member-2 .input-box:first-child{
+    justify-content: center;
+}
+
+.team-member-1 .spc-input-box{
+    /* border-bottom: 1px solid var(--main-color); */
+    margin-bottom: 1rem;
 }
 
 

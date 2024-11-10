@@ -398,28 +398,46 @@ ScrollReveal().reveal('.socials, .track-box:nth-child(3), .track-box:nth-child(4
 
 
 /*----------------Registration Form Validation - Team Lead Details----------------*/
-const nextButton = document.getElementById('next-button');
-const leaderSection = document.getElementById('leader-section');
-const teamMemberSection = document.getElementById('team-members-section');
+// const nextButton = document.getElementById('next-button');
+// const leaderSection = document.getElementById('leader-section');
+// const teamMemberSection = document.getElementById('team-members-section');
 
-nextButton.addEventListener('click', () => {
-const leaderName = document.querySelector('[name="leadname"]').value;
-const leaderMobile = document.querySelector('[name="mobilenumber"]').value;
-const leaderEmail = document.querySelector('[name="leademailid"]').value;
-const leaderGithub = document.querySelector('[name="leadgithublink"]').value;
-const leaderUniversity = document.querySelector('[name="leaduniversity"]').value;
-const leaderGender = document.querySelector('[name="leadgender"]').value;
-const participationMode = document.querySelector('[name="mode"]').value;
-const teamName = document.querySelector('[name="teamname"]').value;
+// nextButton.addEventListener('click', () => {
+// const leaderName = document.querySelector('[name="leadname"]').value;
+// const leaderMobile = document.querySelector('[name="mobilenumber"]').value;
+// const leaderEmail = document.querySelector('[name="leademailid"]').value;
+// const leaderGithub = document.querySelector('[name="leadgithublink"]').value;
+// const leaderUniversity = document.querySelector('[name="leaduniversity"]').value;
+// const leaderGender = document.querySelector('[name="leadgender"]').value;
+// const participationMode = document.querySelector('[name="mode"]').value;
+// const teamName = document.querySelector('[name="teamname"]').value;
 
-if (leaderName && leaderMobile && leaderEmail && leaderGithub && leaderUniversity && leaderGender && participationMode && teamName) {
-  leaderSection.style.display = 'none';
-  teamMemberSection.style.display = 'block';
-} else {
-  alert('Please fill in all required fields for the Team Leader.');
-  return false;
-}
-});
+// if (leaderName && leaderMobile && leaderEmail && leaderGithub && leaderUniversity && leaderGender && participationMode && teamName) {
+//   leaderSection.style.display = 'none';
+//   teamMemberSection.style.display = 'block';
+// } else {
+//   alert('Please fill in all required fields for the Team Leader.');
+//   return false;
+// }
+// });
 
 
 /*---------------- Add Members ----------------*/
+
+const addMemberButtons = document.querySelectorAll('.add-member');
+const teamMember1 = document.querySelector('.team-member-1');
+const teamMember2 = document.querySelector('.team-member-2');
+
+addMemberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const memberNumber = button.dataset.member;
+
+        if (memberNumber === '1') {
+            teamMember1.style.display = 'block';
+            teamMember2.style.display = 'none';
+        } else if (memberNumber === '2') {
+            teamMember1.style.display = 'block';
+            teamMember2.style.display = 'block';
+        }
+    });
+});
