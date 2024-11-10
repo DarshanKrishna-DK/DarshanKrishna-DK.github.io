@@ -99,10 +99,12 @@
 }
 
 .spc-input-box{
+    position: relative;
     flex-direction: column;
 }
   
 .input-container .in{
+    position: relative;
     background: transparent;
     padding: .8rem;
     margin: 1rem 0rem;
@@ -258,6 +260,14 @@ input[type="number"]::-webkit-outer-spin-button {
         width: 100%;
     }
 
+    .team-member-add .detail-head{
+        margin-top: 2rem;
+    }
+
+    .team-member-1 .spc-input-box .in, .team-member-2 .spc-input-box .in{
+        width: 96%;
+    }
+
     .modes{
         text-align: center;
         width: 60%;
@@ -268,5 +278,32 @@ input[type="number"]::-webkit-outer-spin-button {
         width: 40%;
     }
 
+}
+
+@media (max-width: 493px){
+    .team-member-add .input-box{
+        justify-content: center;
+        padding: 1rem 6rem;
+    }  
+    
+    .add-member{
+        margin: 1rem 1.5rem 0;
+    }
+
+    .team-member-add .detail-head h2{
+        font-size: 2rem;
+    }
+
+    .team-member-1 .input-box h2, .team-member-2 .input-box h2{
+        font-size: 1.8rem;
+    }
+
+}
+
+@media (max-width: 415px){
+    .team-member-add .input-box{
+        justify-content: center;
+        padding: 1rem 4rem;
+    } 
 }
 
