@@ -398,28 +398,49 @@ ScrollReveal().reveal('.socials, .track-box:nth-child(3), .track-box:nth-child(4
 
 
 /*----------------Registration Form Validation - Team Lead Details----------------*/
-// const nextButton = document.getElementById('next-button');
-// const leaderSection = document.getElementById('leader-section');
-// const teamMemberSection = document.getElementById('team-members-section');
+const nextButton = document.getElementById('next-button');
+const leaderSection = document.getElementById('leader-section');
+const teamMemberSection = document.getElementById('team-members-section');
 
-// nextButton.addEventListener('click', () => {
-// const leaderName = document.querySelector('[name="leadname"]').value;
-// const leaderMobile = document.querySelector('[name="mobilenumber"]').value;
-// const leaderEmail = document.querySelector('[name="leademailid"]').value;
-// const leaderGithub = document.querySelector('[name="leadgithublink"]').value;
-// const leaderUniversity = document.querySelector('[name="leaduniversity"]').value;
-// const leaderGender = document.querySelector('[name="leadgender"]').value;
-// const participationMode = document.querySelector('[name="mode"]').value;
-// const teamName = document.querySelector('[name="teamname"]').value;
+nextButton.addEventListener('click', () => {
+const leaderName = document.querySelector('[name="leadname"]').value;
+const leaderMobile = document.querySelector('[name="mobilenumber"]').value;
+const leaderEmail = document.querySelector('[name="leademailid"]').value;
+const leaderGithub = document.querySelector('[name="leadgithublink"]').value;
+const leaderUniversity = document.querySelector('[name="leaduniversity"]').value;
+const leaderGender = document.querySelector('[name="leadgender"]').value;
+const participationMode = document.querySelector('[name="mode"]').value;
+const teamName = document.querySelector('[name="teamname"]').value;
 
-// if (leaderName && leaderMobile && leaderEmail && leaderGithub && leaderUniversity && leaderGender && participationMode && teamName) {
-//   leaderSection.style.display = 'none';
-//   teamMemberSection.style.display = 'block';
-// } else {
-//   alert('Please fill in all required fields for the Team Leader.');
-//   return false;
-// }
-// });
+if (!leaderName || !leaderMobile || !leaderEmail || !leaderGithub || !leaderUniversity || !teamName) {
+  alert('Please fill in all required fields for the Team Leader.');
+  return false;
+}
+
+// Mobile number, email, and GitHub link validation
+const mobileRegex = /^\d{10}$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const githubRegex = /^https?:\/\/github\.com\/[^\s\/]+$/;
+
+if (!mobileRegex.test(leaderMobile)) {
+  alert('Please enter a valid 10-digit mobile number.');
+  return false;
+}
+
+if (!emailRegex.test(leaderEmail)) {
+  alert('Please enter a valid email address.');
+  return false;
+}
+
+if (!githubRegex.test(leaderGithub)) {
+  alert('Please enter a valid GitHub link.');
+  return false;
+}
+
+// If all validations pass, proceed to the next section
+leaderSection.style.display = 'none';
+teamMemberSection.style.display = 'block';
+});
 
 
 /*---------------- Add Members ----------------*/
@@ -441,3 +462,29 @@ addMemberButtons.forEach(button => {
         }
     });
 });
+
+
+/*---------------- Github link validation for Team Members ----------------*/
+
+function validateGithubLink(link) {
+  const githubRegex = /^https?:\/\/github\.com\/[^\s\/]+$/;
+  return githubRegex.test(link);
+}
+
+function validateForm() {
+  const Mem1_githubLink = document.querySelector('[name="team_member_1_githublink"]').value;
+  const Mem2_githubLink = document.querySelector('[name="team_member_2_githublink"]').value;
+
+  if (!validateGithubLink(Mem1_githubLink)) {
+    alert("Team Member 1's GitHub link is invalid.");
+    return false;
+  }
+
+  if (!validateGithubLink(Mem2_githubLink)) {
+    alert("Team Member 2's GitHub link is invalid.");
+    return false;
+  }
+
+  // If both github link inputs are valid, allow form submission
+  return true;
+}
