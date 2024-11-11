@@ -1158,7 +1158,7 @@ section{
 
 .faq .section-title{
   font-size: 5rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .faq .section-title span{
@@ -1169,6 +1169,7 @@ section{
 .accordion-container {
   width: 45%;
   margin: 0 auto;
+  padding-bottom: 2rem;
   /* max-width: 600px; */
 }
 
