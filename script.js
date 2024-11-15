@@ -24,7 +24,7 @@ window.onscroll = () =>{
 
 document.addEventListener('DOMContentLoaded', () => {
   // Set target date to March 7, 2025, at 9:00 AM
-  var targetDate = new Date('2025-03-07T09:00:00').getTime() / 1000;
+  var targetDate = new Date('2025-03-21T09:00:00').getTime() / 1000;
   
   // Initialize the countdown to the target date
   var flipdown = new FlipDown(targetDate)

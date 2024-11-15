@@ -246,11 +246,15 @@ section{
 
 .host-container{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     text-align: center;
     align-items: center;
     margin: 3rem 0 0rem 0;
-    width: 80%;
+    width: 70%;
+}
+
+.collab-container img:last-child{
+  margin-left: 5rem;
 }
 
 .org-container h2, .coorg-container h2, .collab-container h2{
