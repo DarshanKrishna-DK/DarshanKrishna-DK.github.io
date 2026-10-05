@@ -97,7 +97,7 @@ npm run dev</code></pre>
   </tbody>
 </table>
 
-<p>CI runs tests and the production build, then uploads <code>dist/</code> as an artifact. <strong>The workflow does not deploy.</strong> The static output can be published to this repository's GitHub Pages root domain when hosting is configured.</p>
+<p>CI runs tests and the production build, then uploads <code>dist/</code> as an artifact. <strong>The workflow does not deploy.</strong></p>
 
 <h2>Controls &amp; comfort</h2>
 

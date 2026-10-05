@@ -1,32 +1,34 @@
-# Dependencies, build output and package caches
+# Dependencies, generated output and local caches
 /node_modules/
 /dist/
 /.npm-cache/
 /.vite/
 *.tsbuildinfo
 
-# Generated delivery images (rebuilt from the preserved originals)
+# Generated delivery images rebuilt from preserved repository inputs
 /public/assets/portrait.webp
 /public/assets/portrait-cutout.webp
 /public/assets/yezdi.webp
 /public/assets/manifest.json
 
-# Local design notes
-/DESIGN.md
-
-# Local verification output and agent scratch files
+# Local verification output
 /artifacts/
-# Retained local source/history that is no longer part of the shipped experience
+
+# Older source and notes that are not part of the current site
+/DESIGN.md
+!/DESIGN.md
 /assets/ghats-environment.png
 /assets/lake-environment.png
 /assets/midnight-environment.png
 /docs/*
-/docs/CONTINUITY_REWORK.md
-/docs/REWORK.md
-/docs/SCENE_REFINEMENT.md
-/docs/VIEWPORT_REWORK.md
-/docs/superpowers/plans/
-/docs/superpowers/progress.md
+!/docs/images/
+/docs/images/*
+!/docs/images/readme-cover.svg
+!/docs/ARCHITECTURE.md
+!/docs/ASSETS.md
+!/docs/ARCADE_MEDIA.md
+!/docs/IMPLEMENTATION_STATUS.md
+/docs/superpowers/
 /test-results/
 /playwright-report/
 /coverage/
@@ -35,7 +37,7 @@
 /.codex/
 /.agents/
 
-# Local configuration, credentials and editor/OS files
+# Local configuration, credentials and editor or OS files
 .env
 .env.*
 !.env.example
