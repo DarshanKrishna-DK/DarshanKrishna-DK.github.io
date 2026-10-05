@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 600" width="1180" height="600" role="img" aria-label="Sahay system architecture">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f0863c"/><stop offset="1" stop-color="#4cb98b"/>
+    </linearGradient>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#665e57"/>
+    </marker>
+    <style>
+      .t   { font-family: 'Segoe UI', system-ui, sans-serif; fill: #f0ebe3; }
+      .lbl { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 15px; font-weight: 600; fill: #f0ebe3; }
+      .sub { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 12px; fill: #9a9088; }
+      .cap { font-family: Consolas, monospace; font-size: 10.5px; fill: #665e57; letter-spacing: 2px; }
+      .box { fill: #121110; stroke: #322d29; stroke-width: 1.2; }
+      .hi  { fill: #16130f; stroke: #e8a33d; stroke-width: 1.4; }
+      .flow{ stroke: #665e57; stroke-width: 1.4; fill: none; marker-end: url(#a); }
+    </style>
+  </defs>
+
+  <rect width="1180" height="600" fill="#0a0908"/>
+  <text x="40" y="46" class="cap">SAHAY - SYSTEM ARCHITECTURE</text>
+  <line x1="40" y1="60" x2="1140" y2="60" stroke="url(#g)" stroke-width="2"/>
+
+  <!-- surfaces -->
+  <text x="40" y="100" class="cap">SURFACES</text>
+  <rect x="40" y="112" width="220" height="72" rx="12" class="box"/>
+  <text x="60" y="140" class="lbl">Web dashboard</text>
+  <text x="60" y="162" class="sub">plan, compare, raise orders</text>
+
+  <rect x="40" y="196" width="220" height="72" rx="12" class="box"/>
+  <text x="60" y="224" class="lbl">Telegram bot</text>
+  <text x="60" y="246" class="sub">voice-first, in 11 languages</text>
+
+  <!-- core -->
+  <text x="330" y="100" class="cap">CORE</text>
+  <rect x="330" y="112" width="250" height="156" rx="12" class="hi"/>
+  <text x="352" y="142" class="lbl">Procurement cycle</text>
+  <text x="352" y="166" class="sub">1 · parse the requirement</text>
+  <text x="352" y="186" class="sub">2 · discover + score vendors</text>
+  <text x="352" y="206" class="sub">3 · negotiate by voice</text>
+  <text x="352" y="226" class="sub">4 · rank by landed cost</text>
+  <text x="352" y="246" class="sub">5 · purchase order + payment</text>
+
+  <rect x="330" y="292" width="250" height="72" rx="12" class="box"/>
+  <text x="352" y="320" class="lbl">Watch modules</text>
+  <text x="352" y="342" class="sub">competitor prices · compliance</text>
+
+  <rect x="330" y="392" width="250" height="72" rx="12" class="box"/>
+  <text x="352" y="420" class="lbl">Assistant</text>
+  <text x="352" y="442" class="sub">tool-calling, multi-turn memory</text>
+
+  <!-- services -->
+  <text x="650" y="100" class="cap">SERVICES</text>
+  <rect x="650" y="112" width="230" height="66" rx="12" class="box"/>
+  <text x="670" y="139" class="lbl">Anakin</text>
+  <text x="670" y="160" class="sub">scrape (async job) · search · crawl</text>
+
+  <rect x="650" y="190" width="230" height="66" rx="12" class="box"/>
+  <text x="670" y="217" class="lbl">Groq</text>
+  <text x="670" y="238" class="sub">extract · rank · negotiate · tools</text>
+
+  <rect x="650" y="268" width="230" height="66" rx="12" class="box"/>
+  <text x="670" y="295" class="lbl">Sarvam</text>
+  <text x="670" y="316" class="sub">STT · TTS · translate (11 languages)</text>
+
+  <rect x="650" y="346" width="230" height="66" rx="12" class="box"/>
+  <text x="670" y="373" class="lbl">Razorpay</text>
+  <text x="670" y="394" class="sub">payment links</text>
+
+  <rect x="650" y="424" width="230" height="66" rx="12" class="box"/>
+  <text x="670" y="451" class="lbl">Channel adapter</text>
+  <text x="670" y="472" class="sub">telegram-voice live · pstn drop-in</text>
+
+  <!-- store -->
+  <text x="950" y="100" class="cap">STORE</text>
+  <rect x="950" y="112" width="190" height="378" rx="12" class="box"/>
+  <text x="970" y="142" class="lbl">SQLite</text>
+  <text x="970" y="164" class="sub">multi-tenant</text>
+  <text x="970" y="196" class="sub">rfqs · vendors</text>
+  <text x="970" y="216" class="sub">negotiations</text>
+  <text x="970" y="236" class="sub">transcripts</text>
+  <text x="970" y="256" class="sub">quotes</text>
+  <text x="970" y="276" class="sub">orders · payments</text>
+  <text x="970" y="296" class="sub">observations</text>
+  <text x="970" y="316" class="sub">compliance events</text>
+  <text x="970" y="336" class="sub">audit log</text>
+  <text x="970" y="372" class="cap">EVERY QUOTE</text>
+  <text x="970" y="390" class="cap">TRACES TO A</text>
+  <text x="970" y="408" class="cap">TRANSCRIPT LINE</text>
+
+  <!-- flows -->
+  <path d="M260 148 H 320" class="flow"/>
+  <path d="M260 232 H 300 V 190 H 320" class="flow"/>
+  <path d="M580 172 H 640" class="flow"/>
+  <path d="M580 200 H 610 V 222 H 640" class="flow"/>
+  <path d="M580 240 H 620 V 300 H 640" class="flow"/>
+  <path d="M580 258 H 600 V 456 H 640" class="flow"/>
+  <path d="M580 328 H 620 V 145 H 640" class="flow"/>
+  <path d="M580 428 H 620 V 300 H 640" class="flow"/>
+  <path d="M880 250 H 940" class="flow"/>
+
+  <line x1="40" y1="524" x2="1140" y2="524" stroke="#322d29"/>
+  <text x="40" y="552" class="sub">Sarvam supplies the voice; a telephony carrier supplies the line. The negotiation agent is written against a channel interface, so swapping Telegram voice for a real phone call is configuration, not a rewrite.</text>
+  <text x="40" y="576" class="sub">No sample-data fallback anywhere: a broken connector surfaces as an error, because a business decision made on an invented number is worse than no answer.</text>
+</svg>

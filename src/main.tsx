@@ -1,0 +1,11 @@
+import { createRoot } from 'react-dom/client';
+import '@fontsource/manrope/latin-600.css';
+import '@fontsource/pixelify-sans/latin-400.css';
+import '@fontsource/pixelify-sans/latin-600.css';
+import '@fontsource/vt323/latin-400.css';
+import './styles.css';
+import './styles/premium.css';
+import './styles/viewport.css';
+import './styles/refinement.css';
+import App from './App';
+createRoot(document.getElementById('root')!).render(<App/>);

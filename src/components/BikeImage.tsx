@@ -1,0 +1,3 @@
+import { useId } from 'react';
+// Non-destructive display treatment. The owner's original asset is never rewritten.
+export function BikeImage(){const id=useId().replaceAll(':','');return <svg className="bike-image" viewBox="0 0 1400 933" role="img" aria-label="Darshan's actual Yezdi Adventure 350 motorcycle, with its number plate blurred"><defs><clipPath id={`${id}-plate`}><path d="M390 180L558 230L548 267L379 215Z"/></clipPath><filter id={`${id}-blur`} x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="9"/></filter></defs><image href="/assets/yezdi.webp" width="1400" height="933"/><g clipPath={`url(#${id}-plate)`}><image href="/assets/yezdi.webp" width="1400" height="933" filter={`url(#${id}-blur)`}/></g></svg>;}

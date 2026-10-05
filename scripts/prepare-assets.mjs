@@ -1,0 +1,14 @@
+import sharp from 'sharp';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+import path from 'node:path';
+const root = process.cwd();
+const output = path.join(root, 'public/assets');
+await mkdir(output, { recursive: true });
+await sharp(path.join(root, 'assets/dk.png')).resize({ width: 1100, withoutEnlargement: true }).webp({ quality: 86 }).toFile(path.join(output, 'portrait.webp'));
+const bike = path.join(root, 'assets/Isolated Black Yezdi Adventure Motorcycle.png');
+await sharp(bike).resize({ width: 1400, withoutEnlargement: true }).webp({ quality: 88 }).toFile(path.join(output, 'yezdi.webp'));
+const cutout = path.join(root, 'assets/dk-cutout.png');
+if (existsSync(cutout)) await sharp(cutout).resize({ width: 1100, withoutEnlargement: true }).webp({ quality: 88 }).toFile(path.join(output, 'portrait-cutout.webp'));
+await writeFile(path.join(output, 'manifest.json'), JSON.stringify({ portrait: true, cutout: existsSync(cutout), bike: true, resume: false }, null, 2));
+console.log('Prepared portrait and Yezdi delivery assets from repository-local originals.');

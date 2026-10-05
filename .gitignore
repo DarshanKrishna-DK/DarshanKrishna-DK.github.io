@@ -1,0 +1,50 @@
+# Dependencies, build output and package caches
+/node_modules/
+/dist/
+/.npm-cache/
+/.vite/
+*.tsbuildinfo
+
+# Generated delivery images (rebuilt from the preserved originals)
+/public/assets/portrait.webp
+/public/assets/portrait-cutout.webp
+/public/assets/yezdi.webp
+/public/assets/manifest.json
+
+# Local design notes
+/DESIGN.md
+
+# Local verification output and agent scratch files
+/artifacts/
+# Retained local source/history that is no longer part of the shipped experience
+/assets/ghats-environment.png
+/assets/lake-environment.png
+/assets/midnight-environment.png
+/docs/*
+/docs/CONTINUITY_REWORK.md
+/docs/REWORK.md
+/docs/SCENE_REFINEMENT.md
+/docs/VIEWPORT_REWORK.md
+/docs/superpowers/plans/
+/docs/superpowers/progress.md
+/test-results/
+/playwright-report/
+/coverage/
+/.playwright-mcp/
+/.superpowers/
+/.codex/
+/.agents/
+
+# Local configuration, credentials and editor/OS files
+.env
+.env.*
+!.env.example
+*.log
+/npm-debug.log*
+/.vscode/
+/.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
