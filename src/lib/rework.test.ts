@@ -6,6 +6,7 @@ import { profile } from '../data/profile';
 
 describe('companion action scheduling',()=>{
   it('varies actions without consecutive repeats, with bounded intervals',()=>{
+    expect(bootActions).not.toContain('jumping');
     for(const state of bootActions)for(const random of [0,.25,.5,.75,1]){
       const next=nextBootAction(state,random);expect(bootActions).toContain(next);expect(next).not.toBe(state);
       expect(actionDelay(random)).toBeGreaterThanOrEqual(3000);expect(actionDelay(random)).toBeLessThanOrEqual(5000);

@@ -11,6 +11,8 @@ export function sampleJourney(progress: number): { index: number; local: number;
   return { index, local: Math.max(0,Math.min(1,t-index+0.5)), camera: [sway+entranceArc, 1.8+Math.sin(t*Math.PI)*0.3, 8+routeZ(t)], target: [sway*(t<1?.25:.8),0.7,routeZ(t)] };
 }
 export function worldProgress(id: WorldId): number { return Math.max(0,worlds.findIndex(w => w.id === id)) / 6; }
+/** A recognized chapter URL is a direct entry, including on a fresh visit. */
+export function entryWorld(hash: string): WorldId | null { return worlds.find(w => `#${w.id}` === hash)?.id ?? null; }
 export function hashWorld(hash: string): WorldId { return worlds.find(w => w.id === hash.replace('#',''))?.id ?? 'spawn'; }
 export function sampleCameraJourney(progress:number,reduced=false,portrait=false){
   const sample=sampleJourney(reduced?sampleJourney(progress).index/6:progress);

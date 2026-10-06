@@ -3,9 +3,9 @@ import { hashWorld, worldProgress } from './journey';
 import type { WorldId } from '../data/worlds';
 
 export function useJourney(entered:boolean, reduced:boolean, blocked:boolean) {
-  const [progress,setProgress]=useState(0); const [speed,setSpeed]=useState(0);
-  const current=useRef(0),target=useRef(0),lastTravel=useRef(Date.now()),lastInput=useRef(0);
-  const blockedRef=useRef(blocked),initialized=useRef(false),publishedProgress=useRef(0);
+  const [progress,setProgress]=useState(()=>worldProgress(hashWorld(location.hash))); const [speed,setSpeed]=useState(0);
+  const current=useRef(progress),target=useRef(progress),lastTravel=useRef(Date.now()),lastInput=useRef(0);
+  const blockedRef=useRef(blocked),initialized=useRef(false),publishedProgress=useRef(progress);
   blockedRef.current=blocked;
   const navigate=useCallback((id:WorldId,history=true)=>{
     target.current=worldProgress(id);lastTravel.current=Date.now();lastInput.current=performance.now();

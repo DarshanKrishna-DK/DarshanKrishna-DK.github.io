@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { Group, Vector3 } from 'three';
 import { SceneMotion } from './Motion';
+import { arcadeScreenVisible } from '../lib/routeLayout';
 
 // Official trailers stay on their publishers' players. No footage is copied.
 export const gameClips=[
@@ -33,7 +34,7 @@ export function MediaScreen({index,width,height,active,preload=false}:{index:num
     return()=>{clearInterval(handshake);document.removeEventListener('visibilitychange',visibility);frame.removeEventListener('load',listen);window.removeEventListener('message',message);el.remove();element.current=null;};
   },[shouldLoad,index,gl,reduced,size.width<761]);
   useFrame(({camera,size})=>{
-    const el=element.current,g=group.current;if(!el||!g)return;if(!isActive.current){el.style.visibility='hidden';return;}g.updateWorldMatrix(true,false);
+    const el=element.current,g=group.current;if(!el||!g)return;if(!isActive.current||!arcadeScreenVisible(camera.position.z)){el.style.visibility='hidden';el.dataset.inRoom='false';return;}el.dataset.inRoom='true';g.updateWorldMatrix(true,false);
     const p=corners.current;p[0].set(-width/2,height/2,0);p[1].set(width/2,height/2,0);p[2].set(width/2,-height/2,0);p[3].set(-width/2,-height/2,0);
     for(const v of p){g.localToWorld(v);v.project(camera);v.x=(v.x+1)*size.width/2;v.y=(1-v.y)*size.height/2;}
     if(p.some(v=>v.z>1||v.z< -1)){el.style.visibility='hidden';return;}el.style.visibility='visible';

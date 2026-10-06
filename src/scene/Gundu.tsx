@@ -31,9 +31,8 @@ export function Duck({state='idle',pointer,reduced=false,accessory}:{state?:Gund
     if(!body.current||!head.current||!left.current||!right.current||!feet.current||!eyes.current||!laptop.current)return;
     const t=clock.elapsedTime;if(previous.current!==state){previous.current=state;started.current=t;}const age=t-started.current;
     const dance=state==='dancing',warming=state==='warming',quacking=state==='quacking';const cursor=pointer?.current??[0,0];const move=state==='walking'||state==='running';const f=state==='running'?15:9;const breathe=reduced?0:Math.sin(t*2)*.018;
-    const jump=state==='jumping'&&!reduced?Math.max(0,Math.sin(Math.min(age,1)*Math.PI))*.45:0;
     const damp=(from:number,to:number)=>reduced?to:MathUtils.damp(from,to,9,Math.min(delta,.05));
-    body.current.position.y=damp(body.current.position.y,(sitting?-.13:0)+breathe+jump+(dance&&!reduced?Math.abs(Math.sin(t*6))*.1:0)+(move&&!reduced?Math.abs(Math.sin(t*f))*.045:0));
+    body.current.position.y=damp(body.current.position.y,(sitting?-.13:0)+breathe+(move&&!reduced?Math.abs(Math.sin(t*f))*.045:0));
     body.current.rotation.z=damp(body.current.rotation.z,state==='annoyed'?-.12:dance&&!reduced?Math.sin(t*6)*.13:move&&!reduced?Math.sin(t*f)*.04:0);
     body.current.rotation.y=damp(body.current.rotation.y,warming?-1.35:dance&&!reduced?Math.sin(t*3)*.45:state==='peeking'?.48:state==='stretching'?-.4:-.24);
     head.current.rotation.y=damp(head.current.rotation.y,warming?-.15:state==='sleeping'?-.45:cursor[0]*.8);

@@ -43,7 +43,7 @@
 <table>
   <thead><tr><th>Chapter</th><th>Inside the world</th><th>What to explore</th></tr></thead>
   <tbody>
-    <tr><td><strong>00 · Boot</strong></td><td>A terminal, a quiet cosmic backdrop and a companion scan.</td><td>Meet Gundu. Begin the journey with sound, or choose lightweight rendering.</td></tr>
+    <tr><td><strong>00 · Entry</strong></td><td>A glowing Earth horizon, an orbiting satellite, stars and occasional meteor trails.</td><td>Meet Darshan and Gundu. Begin the journey, or explore illustrated lightweight worlds.</td></tr>
     <tr><td><strong>01 · Spawn</strong></td><td>A dark space with a spinning purple portal.</td><td>Meet the human behind the ideas, read the profile and open the quick briefing.</td></tr>
     <tr><td><strong>02 · DevLab</strong></td><td>A furnished workstation under a warm pendant lamp.</td><td>Explore skills, current work and AI-assisted development workflows.</td></tr>
     <tr><td><strong>03 · Projects</strong></td><td>Three circular product displays in a vaulted gallery.</td><td>Switch products and walk through their problems, systems and capabilities.</td></tr>
@@ -119,7 +119,7 @@ npm run dev</code></pre>
 <details>
   <summary><strong>Sound design</strong></summary>
   <ul>
-    <li>Sound starts only after the visitor's entry gesture.</li>
+    <li>Sound starts only after the visitor's entry gesture or sound-control click. Direct chapter links open at that chapter, initially muted.</li>
     <li>Spawn, DevLab, Projects and DevRel City share one original score.</li>
     <li>The auditorium applauds once after a three-second stay. Leaving early cancels the cue.</li>
     <li>Road uses breeze, birds and landscape-specific natural ambience.</li>

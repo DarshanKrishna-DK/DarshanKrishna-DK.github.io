@@ -1,10 +1,8 @@
-export const bootLines=['initializing darshan.world','loading developer...','loading projects...','loading communities...','loading questionable life choices...','scanning companion...','duck detected.'];
+﻿export const bootLines=['Finding our place in the universe...','Preparing the developer lab...','Connecting the product worlds...','Bringing the community together...','Taking the scenic route...','Looking for the duck...','Gundu is ready. Mostly.'];
 export const liveCommands=[
-  ['gundu.connect(cursor)','head tracking → online'],
-  ['route.compile(7 worlds)','all destinations → connected'],
-  ['companion.check_attitude()','mild sarcasm → within limits'],
-  ['portal.prepare("spawn")','gateway → awaiting you'],
-  ['ideas.count()','result exceeds sensible limits'],
-  ['audio.await_gesture()','sound stays off until entry'],
+  ['route.connect()', 'Products to people, with a few detours.'],
+  ['companion.status()', 'Your guide is a duck. You are in good hands.'],
+  ['worlds.ready()', 'Seven worlds connected. Explore at your own pace.'],
+  ['ideas.count()', 'A few finished products. Plenty of curiosity.'],
 ];
-export const companionIntroduction="I'm Gundu. Your guide, occasional distraction and unofficial co-founder. Shall we?";
+export const companionIntroduction="I'm Gundu. I know a shortcut. It takes us through all seven worlds.";

@@ -1,6 +1,6 @@
 import { memo, useState } from 'react';
 import { AnimeIcon } from './AnimeArchive';
-import { roadBikeOpacity } from '../lib/routeLayout';
+import { roadBikeOpacity, spawnPortraitOpacity } from '../lib/routeLayout';
 import { BikeImage } from './BikeImage';
 import { ArrowRight, ArrowUpRight, Mountain, Moon, Waves, Gamepad2, Send, GitBranch } from 'lucide-react';
 import { profile, skillGroups, communityStats } from '../data/profile';
@@ -10,7 +10,7 @@ export const WorldContent=memo(function WorldContent({progress,index,project,set
   const [skills,setSkills]=useState(0);const p=projects[project];
   return <main id="world-content" tabIndex={-1} className={`world-content world-${index}`}>
     {index===0&&<>
-      <div className="portrait-stage" aria-hidden="true">{portrait&&<img src={portrait} alt=""/>}<span className="portrait-tag">THE HUMAN BEHIND THE IDEAS</span></div>
+      <div className="portrait-stage" aria-hidden="true" style={{visibility:spawnPortraitOpacity(progress)>0?'visible':'hidden'}}>{portrait&&<img src={portrait} alt="" style={{opacity:spawnPortraitOpacity(progress)}}/>}<span className="portrait-tag" style={{opacity:spawnPortraitOpacity(progress)*.6}}>THE HUMAN BEHIND THE IDEAS</span></div>
       <div className="narrative spawn-copy"><span className="eyebrow">01 / SPAWN POINT · BENGALURU, INDIA</span><h1 className="name-title">DARSHAN<br/><span>KRISHNA N</span></h1><p className="spawn-roles">DEVELOPER <i/> DEVREL <i/> BUILDER <i/> EXPLORER</p><p className="lead">Turning technology into things people can use, understand and rally around.</p><div className="identity"><span>CLASS<b>BUILDER</b></span><span>SPECIALTY<b>DEVREL</b></span><span>SIDE QUEST<b>SOLO ENTREPRENEUR</b></span><span>COMPANION<b>GUNDU</b></span></div><div className="world-actions"><button className="button" onClick={()=>navigate('devlab')}>Start exploring<ArrowRight size={17}/></button><button className="text-button" onClick={()=>open('briefing')}>Meet the human<ArrowUpRight size={15}/></button></div></div>
     </>}
     {index===1&&<div className="narrative lab-copy"><span className="eyebrow">02 / DEVLAB · THE IDEA ENGINE</span><h1>I BUILD THINGS<br/><em>I WISH EXISTED.</em></h1><p className="lead">Products and data workflows, built with intent.</p><div className="workstation-tabs" role="group" aria-label="Skill workstations">{skillGroups.map((g,i)=><button aria-pressed={skills===i} onClick={()=>setSkills(i)} key={g.name}>{g.name}</button>)}</div><div className="workstation" aria-live="polite"><p className="skills-type">{skillGroups[skills].skills.map(s=><span key={s}>{s}</span>)}</p></div><div className="current-role"><span>JLL TECHNOLOGIES · AUG 2024-PRESENT</span><b>Data Quality &amp; Governance Analyst I</b></div><div className="world-actions"><button className="button" onClick={()=>open('work')}>Inside my work<ArrowUpRight size={16}/></button><button className="text-button" onClick={()=>open('agents')}><GitBranch size={16}/> My agentic toolchain</button></div></div>}

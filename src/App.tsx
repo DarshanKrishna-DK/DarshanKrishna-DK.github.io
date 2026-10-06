@@ -13,7 +13,7 @@ import { profile, ecosystemRoles, communityStats, communityMemories } from './da
 import { projects } from './data/projects';
 import { worlds, type WorldId } from './data/worlds';
 import { worldDialogue, clickDialogue, projectDialogue, sectionDialogue, roadDialogue } from './data/gundu';
-import { sampleJourney } from './lib/journey';
+import { entryWorld, sampleJourney } from './lib/journey';
 import { useJourney } from './lib/useJourney';
 import { LightweightScene } from './components/LightweightScene';
 import { companionState, maySpeak } from './lib/companion';
@@ -25,8 +25,8 @@ const WorldCanvas = lazy(()=>import('./scene/WorldCanvas'));
 type Manifest={portrait:boolean;cutout:boolean;bike:boolean;resume:boolean};
 
 export default function App() {
-  const [entered,setEntered]=useState(false);
-  const [bootVisible,setBootVisible]=useState(true);const [volume,setVolume]=useState(.65);
+  const [entered,setEntered]=useState(()=>entryWorld(location.hash)!==null);
+  const [bootVisible,setBootVisible]=useState(()=>entryWorld(location.hash)===null);const [volume,setVolume]=useState(.65);
   const [audioStatus,setAudioStatus]=useState({state:'closed',rms:0,audienceRms:0,audienceReady:false,audienceBursts:0,natureReady:0,music:true,theme:'Spawn / first light'});
   const [worldReady,setWorldReady]=useState(false);
   const worldRendered=useCallback(()=>setWorldReady(true),[]);
@@ -49,6 +49,7 @@ export default function App() {
 
   useEffect(()=>{
     let live=true;
+    if(location.hash&&!entryWorld(location.hash))window.history.replaceState(null,'',location.pathname+location.search);
     const essential=['/assets/portrait.webp','/assets/yezdi.webp','/assets/project-logos/sahay.png','/assets/project-logos/zuik.png','/assets/project-logos/swyftpay.png','/assets/portrait-cutout.webp'];
     essential.forEach(url=>{const image=new Image();const work=new Promise<boolean>(resolve=>{image.onload=()=>resolve(true);image.onerror=()=>resolve(false);image.src=url;});void boundedReadiness(work).then(success=>{if(!live)return;setLoaded(n=>n+1);if(!success){setFailures(n=>n+1);if(url.includes('portrait'))setManifest(m=>({...m,portrait:false}));if(url.includes('yezdi'))setManifest(m=>({...m,bike:false}));}});});
     fetch('/assets/manifest.json').then(r=>r.ok?r.json():Promise.reject()).then((m:Manifest)=>{if(live)setManifest(m);}).catch(()=>{});
@@ -56,7 +57,7 @@ export default function App() {
     audio.current=new Ambience();const lost=()=>fail();window.addEventListener('world-context-lost',lost);
     return()=>{live=false;media.removeEventListener('change',changed);window.removeEventListener('world-context-lost',lost);audio.current?.dispose();if(lineTimer.current)clearTimeout(lineTimer.current);if(quackTimer.current)clearTimeout(quackTimer.current);};
   },[fail]);
-  useEffect(()=>{if(sceneReady&&(worldReady||lightweight))return;const timeout=setTimeout(fail,12000);return()=>clearTimeout(timeout);},[sceneReady,worldReady,lightweight,fail]);
+  useEffect(()=>{if(!entered||sceneReady&&(worldReady||lightweight))return;const timeout=setTimeout(fail,12000);return()=>clearTimeout(timeout);},[entered,sceneReady,worldReady,lightweight,fail]);
   useEffect(()=>{if(lightweight)setSceneReady(true);},[lightweight]);
   useEffect(()=>{localStorage.setItem('dw-reduced',String(reduced));},[reduced]);
   useEffect(()=>{audio.current?.setRoadBeat(roadBeat);},[roadBeat]);
@@ -102,16 +103,16 @@ export default function App() {
 
   return <div className={`app ${entered?'entered':''} ${lightweight?'lightweight':''} ${reduced?'reduced-motion':''}`} data-world={worlds[index].id}>
     {import.meta.env.DEV&&entered&&new URLSearchParams(location.search).has('scene-review')&&<label style={{position:'fixed',top:68,left:20,zIndex:100,fontSize:13,padding:8,background:'#101a2bd9',borderRadius:8}}>Camera chapter <input aria-label="Camera chapter" type="number" min="0" max="6" step="0.05" value={Number((progress*6).toFixed(3))} onChange={e=>seek(Number(e.target.value))} style={{width:65,marginLeft:8}}/></label>}
-    <div className="scene-layer" aria-hidden="true">{lightweight&&<LightweightScene world={index} beat={roadBeat}/>} {!lightweight && <GraphicsBoundary onFailure={fail}><Suspense fallback={null}><WorldCanvas progress={progress} reduced={reduced} roadBeat={roadBeat} project={project} onProject={selectProject} onReady={worldRendered} onFailure={fail} paused={Boolean(modal)||!entered}/></Suspense></GraphicsBoundary>}<div className="scene-vignette"/><div className="scene-grain"/><div className="spatial-grid"/></div>
-    {bootVisible&&<Boot loaded={loaded+(sceneReady&&(worldReady||lightweight)?1:0)} total={7} onEnter={enter} onLightweight={()=>{setLightweight(true);void enter(true);}} reduced={reduced} onReady={ready} onGraphicsFailure={fail} failures={failures} exiting={entered}/>}{entered&&<>
+    <div className="scene-layer" aria-hidden="true">{lightweight&&<LightweightScene world={index} beat={roadBeat} project={project}/>} {!lightweight && entered && <GraphicsBoundary onFailure={fail}><Suspense fallback={null}><WorldCanvas progress={progress} reduced={reduced} roadBeat={roadBeat} project={project} onProject={selectProject} onReady={worldRendered} onFailure={fail} paused={Boolean(modal)||!entered}/></Suspense></GraphicsBoundary>}<div className="scene-vignette"/><div className="scene-grain"/><div className="spatial-grid"/></div>
+    {bootVisible&&<Boot loaded={loaded+(sceneReady?1:0)} total={7} onEnter={enter} onLightweight={()=>{setLightweight(true);void enter(true);}} reduced={reduced} onReady={ready} onGraphicsFailure={fail} failures={failures} exiting={entered}/>}{entered&&<>
 
       <a className="skip-link" href="#world-content" onClick={e=>{e.preventDefault();document.getElementById('world-content')?.focus({preventScroll:true});}}>Skip to current world content</a>
       <Hud index={index} progress={progress} muted={muted} lightweight={lightweight} onMap={()=>setModal('map')} onBriefing={()=>setModal('briefing')} onMute={()=>void toggleSound()} onMode={()=>setLightweight(l=>!l)} navigate={navigate}/>
       <WorldContent progress={progress} index={index} project={project} setProject={selectProject} roadBeat={roadBeat} setRoadBeat={setRoadBeat} portrait={manifest.portrait?portrait:''} hasBike={manifest.bike} navigate={navigate} open={setModal}/>
-      <div className="companion"><div className="gundu-dialogue-slot">{dialogue&&<button className="gundu-dialogue" onClick={()=>setDialogue(null)} aria-label="Dismiss Gundu dialogue"><span>GUNDU</span><p>{dialogue}</p><small>tap to dismiss</small></button>}</div>{<GraphicsBoundary onFailure={fail}><Gundu state={duckState} accessory={accessory} reduced={reduced} onClick={talkDuck}/></GraphicsBoundary>}</div>
+      <div className="companion"><div className="gundu-dialogue-slot">{dialogue&&<button className="gundu-dialogue" onClick={()=>setDialogue(null)} aria-label="Dismiss Gundu dialogue"><span>GUNDU</span><p>{dialogue}</p><small>tap to dismiss</small></button>}</div>{<GraphicsBoundary onFailure={fail}><Gundu state={duckState} accessory={accessory} reduced={reduced} onClick={talkDuck} onReady={ready}/></GraphicsBoundary>}</div>
       <output className="soundscape-status" data-audio-state={audioStatus.state} data-audio-rms={audioStatus.rms.toFixed(5)} data-audience-rms={audioStatus.audienceRms.toFixed(5)} data-audience-ready={audioStatus.audienceReady} data-audience-bursts={audioStatus.audienceBursts} data-nature-ready={audioStatus.natureReady} data-music={audioStatus.music} data-muted={muted} aria-hidden="true"/>
       {audioError&&<div className="audio-error" role="status"><VolumeX size={14}/> Sound unavailable in this browser. The journey continues silently.</div>}
-      {modal&&<Dialog title={modalTitle} onClose={close} wide={modal==='anime'||modal==='resume'||modal.startsWith('project-')}>
+      {modal&&<Dialog title={modalTitle} onClose={close} project={modal.startsWith('project-')} wide={modal==='anime'||modal==='resume'||modal.startsWith('project-')}>
         {modal==='map'&&<div className="map-content"><p>Take the scenic route, or go straight to what interests you.</p><div className="map-utilities"><button className="button secondary" onClick={()=>setModal('briefing')}>Quick briefing<ArrowUpRight size={15}/></button><button className="text-button" onClick={()=>setLightweight(l=>!l)}>{lightweight?'Enable cinematic mode':'Enable lightweight mode'}</button><button className="text-button" aria-pressed={reduced} onClick={()=>setReduced(r=>!r)}>{reduced?'Restore motion':'Reduce motion'}</button></div><label className="volume-setting"><span>Soundscape volume</span><input type="range" min="0" max="1" step=".05" value={volume} onChange={e=>setVolume(Number(e.target.value))} aria-label="Soundscape volume"/><span>{Math.round(volume*100)}%</span></label><div className="map-route">{worlds.map((w,i)=><button key={w.id} className={i===index?'current':''} onClick={()=>{close();navigate(w.id);}}><span>{w.icon}</span><div><b>{w.name}</b><small>{w.subtitle}</small></div><ArrowRight size={17}/></button>)}</div><p className="map-hint"><Map size={14}/> Scroll or swipe to travel. Arrow controls let you jump.</p></div>}
         {modal==='briefing'&&<div className="briefing"><div className="briefing-identity">{manifest.portrait&&<img src="/assets/portrait.webp" alt="Darshan Krishna"/>}<div><span className="eyebrow">DEVELOPER / DEVREL / COMMUNITY BUILDER</span><h3>{profile.name}</h3><p>{profile.introduction}</p></div></div><div className="briefing-job"><span className="eyebrow">CURRENTLY</span><h3>{profile.role}</h3><p>{profile.employer} · {profile.dates}</p></div><h3>Products I've built</h3><div className="briefing-products">{projects.map((p,i)=><button key={p.id} onClick={()=>setModal(`project-${i}`)}><b>{p.name}</b><p>{p.summary}</p><ArrowUpRight size={18}/></button>)}</div><h3>Community, in numbers</h3><div className="briefing-stats">{communityStats.map(s=><div key={s.label}><b>{s.value}</b><span>{s.label}</span></div>)}</div><p>{profile.philosophy}</p><div className="briefing-actions"><a className="button" href={`mailto:${profile.email}`}>Get in touch<ArrowUpRight size={15}/></a><a className="button secondary" href={profile.resumeUrl}><FileText size={15}/> View Resume</a></div></div>}
         {modal==='community'&&<div className="community-detail"><span className="eyebrow">FOUNDER / KROWDKRAFT</span><h3>Technology is only half the story.</h3><p>{profile.philosophy}</p><div className="briefing-stats">{communityStats.map(s=><div key={s.label}><b>{s.value}</b><span>{s.label}</span></div>)}</div><h3>Across the ecosystem</h3><ul className="role-list">{ecosystemRoles.map(r=><li key={r}>{r}</li>)}</ul><p>Talks and training across GitHub, Postman, AWS Cloud and Blockchain.</p>{communityMemories.length>0&&<div className="memory-wall">{communityMemories.map((m,i)=><MemoryFrame key={m.image} memory={m} index={i}/>)}</div>}<a className="text-button" href={profile.socials[0].url} target="_blank" rel="noreferrer">Connect on LinkedIn<ArrowUpRight size={15}/></a></div>}

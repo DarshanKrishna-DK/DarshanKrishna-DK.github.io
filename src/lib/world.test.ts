@@ -1,8 +1,18 @@
 import { describe, expect, it } from 'vitest';
-import { sampleJourney, worldProgress, hashWorld } from './journey';
+import { sampleJourney, worldProgress, hashWorld, entryWorld } from './journey';
 import { companionState, maySpeak } from './companion';
 
 describe('connected journey', () => {
+  it('opens recognized chapter links directly and reserves the entry screen for the root', () => {
+    const chapters=['spawn','devlab','projects','devrel','road','arcade','campfire'] as const;
+    chapters.forEach((chapter,index)=>{
+      expect(entryWorld(`#${chapter}`)).toBe(chapter);
+      expect(sampleJourney(worldProgress(hashWorld(`#${chapter}`))).index).toBe(index);
+    });
+    expect(entryWorld('')).toBeNull();
+    expect(entryWorld('#unknown')).toBeNull();
+    expect(entryWorld('#world-content')).toBeNull();
+  });
   it('clamps invalid/outside positions and keeps the last world reachable', () => {
     expect(sampleJourney(-3).index).toBe(0);
     expect(sampleJourney(NaN).index).toBe(0);

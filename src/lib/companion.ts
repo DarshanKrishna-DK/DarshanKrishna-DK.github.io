@@ -1,4 +1,4 @@
-export type GunduState = 'idle' | 'walking' | 'running' | 'pointing' | 'talking' | 'sitting' | 'sleeping' | 'typing' | 'helmet' | 'microphone' | 'gaming' | 'campfire' | 'annoyed' | 'surprised' | 'waving' | 'peeking' | 'stretching' | 'jumping' | 'dancing' | 'quacking' | 'warming';
+export type GunduState = 'idle' | 'walking' | 'running' | 'pointing' | 'talking' | 'sitting' | 'sleeping' | 'typing' | 'helmet' | 'microphone' | 'gaming' | 'campfire' | 'annoyed' | 'surprised' | 'waving' | 'peeking' | 'stretching' | 'dancing' | 'quacking' | 'warming';
 export function companionState(input: { world: number; idle: number; speed: number; clicks: number }): GunduState {
   if(input.clicks>=5)return 'annoyed';
   if(input.speed>1.5)return 'running';
@@ -9,6 +9,6 @@ export function companionState(input: { world: number; idle: number; speed: numb
   return (['idle','typing','pointing','microphone','helmet','gaming','campfire'] as GunduState[])[input.world] ?? 'idle';
 }
 export function maySpeak(now: number, last: number): boolean { return now-last>=12000; }
-export const bootActions:GunduState[]=['waving','dancing','peeking','stretching','jumping','sitting','quacking'];
+export const bootActions:GunduState[]=['waving','dancing','peeking','stretching','sitting','quacking'];
 export function nextBootAction(previous:GunduState,random:number):GunduState{const choices=bootActions.filter(s=>s!==previous);return choices[Math.min(choices.length-1,Math.floor(Math.max(0,Math.min(.999,random))*choices.length))];}
 export function actionDelay(random:number){return 3000+Math.max(0,Math.min(1,random))*2000;}

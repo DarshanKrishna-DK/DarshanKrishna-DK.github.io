@@ -30,10 +30,11 @@ function Passage({from}:{from:number}){
   const leds=useMemo(()=>{const g=new BufferGeometry();g.setAttribute('position',new Float32BufferAttribute(ribs.flatMap(r=>r.position),3));return g;},[ribs]);
   const ledUniforms=useMemo(()=>({tint:{value:new Color(tones[from])}}),[from]);useEffect(()=>()=>leds.dispose(),[leds]);
   return <group position={[0,0,WORLD_Z[from]]}>
-    <mesh geometry={geometry}><meshStandardMaterial side={DoubleSide} color={from===3||from===5?'#303635':'#202d3c'} roughness={.52} metalness={.22} emissive={tones[from]} emissiveIntensity={.065}/></mesh>
-    <points geometry={leds}><shaderMaterial transparent depthWrite={false} uniforms={ledUniforms} vertexShader={'varying float depth;void main(){vec4 p=modelViewMatrix*vec4(position,1.);depth=-p.z;gl_Position=projectionMatrix*p;gl_PointSize=clamp(25./depth,1.,5.);}'} fragmentShader={'uniform vec3 tint;varying float depth;void main(){float d=length(gl_PointCoord-.5)*2.;if(d>1.)discard;gl_FragColor=vec4(tint,(1.-d*d)*.85*(1.-smoothstep(18.,65.,depth)));\n#include <colorspace_fragment>\n}'}/></points>
-    {[-1,1].map(s=><mesh key={s} position={[(from===0?1.5:-2.2)+s*3.9,-1.695,start+length/2]} rotation={[-Math.PI/2,0,0]}><planeGeometry args={[.028,Math.abs(length)]}/><meshBasicMaterial color={tones[from]} toneMapped={false}/></mesh>)}
-    {[0,1,2,3,4].map(i=><mesh key={i} position={[(from===0?3*(1-i/4):-2.2),-1.69,start+length*(i+.5)/5]} rotation={[-Math.PI/2,0,0]}><planeGeometry args={[8,.022]}/><meshBasicMaterial color={tones[from]} transparent opacity={.26}/></mesh>)}
+    <mesh position={[from===0?1.5:-2.2,ROUTE_FLOOR.y+.006,start+length/2]} rotation={[-Math.PI/2,0,0]}><planeGeometry args={[12,Math.abs(length)]}/><meshBasicMaterial color="#070b12" fog={false}/></mesh>
+    <mesh geometry={geometry}><meshBasicMaterial side={DoubleSide} color={from===3||from===5?'#060a0b':'#050810'} fog={false}/></mesh>
+    <points geometry={leds}><shaderMaterial transparent depthWrite={false} uniforms={ledUniforms} vertexShader={'varying float depth;void main(){vec4 p=modelViewMatrix*vec4(position,1.);depth=-p.z;gl_Position=projectionMatrix*p;gl_PointSize=clamp(25./depth,1.,5.);}'} fragmentShader={'uniform vec3 tint;varying float depth;void main(){float d=length(gl_PointCoord-.5)*2.;if(d>1.)discard;gl_FragColor=vec4(tint,(1.-d*d)*.28*(1.-smoothstep(18.,65.,depth)));\n#include <colorspace_fragment>\n}'}/></points>
+    {[-1,1].map(s=><mesh key={s} position={[(from===0?1.5:-2.2)+s*3.9,-1.695,start+length/2]} rotation={[-Math.PI/2,0,0]}><planeGeometry args={[.016,Math.abs(length)]}/><meshBasicMaterial color={tones[from]} transparent opacity={.14} toneMapped={false}/></mesh>)}
+    {[0,1,2,3,4].map(i=><mesh key={i} position={[(from===0?3*(1-i/4):-2.2),-1.69,start+length*(i+.5)/5]} rotation={[-Math.PI/2,0,0]}><planeGeometry args={[8,.022]}/><meshBasicMaterial color={tones[from]} transparent opacity={.10}/></mesh>)}
   </group>;
 }
 export function JourneyRoute({progress}:{progress:number}){return <group>

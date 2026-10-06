@@ -1,0 +1,4 @@
+import { BufferGeometry, Float32BufferAttribute } from 'three';
+import { ARCH, EXIT_Z } from '../lib/routeLayout';
+export function roadCenter(z:number){const approach=Math.max(0,Math.min(1,(-z-26)/20));return (1.5+Math.sin(z*.075)*2)*(1-approach)+ARCH.center*approach;}
+export function createRoadGeometry(){const positions:number[]=[],indices:number[]=[],uvs:number[]=[];for(let i=0;i<=90;i++){const z=6-i*((6-EXIT_Z[4])/90),center=roadCenter(z);for(const side of [-1,1]){positions.push(center+side*1.8,-1.57,z);uvs.push((side+1)/2,i/90);}if(i<90){const n=i*2;indices.push(n,n+1,n+2,n+1,n+3,n+2);}}const g=new BufferGeometry();g.setAttribute('position',new Float32BufferAttribute(positions,3));g.setAttribute('uv',new Float32BufferAttribute(uvs,2));g.setIndex(indices);g.computeVertexNormals();return g;}

@@ -1,34 +1,37 @@
-﻿# Implementation and verification
+# Implementation and verification
 
-Updated October 5, 2026. This file describes the current local implementation, not a deployment claim.
+Updated October 6, 2026. This file describes the current local implementation, not a deployment claim.
 
 ## Current experience
 
 Seven connected chapters present Darshan's profile, technical work, products, community, travels, gaming/anime interests and contact details. Cinematic WebGL is the default; lightweight and reduced-motion controls remain available. Gundu is a separate 3D companion when graphics are supported.
 
-Spawn uses a dark background and circular purple portal. Later exits have opaque arched portals and connected passages. Road spans 72 scene units; indoor chapters span 36. The bike fades before its exit. Auditorium applause occurs once per visit after three seconds. Road and Campfire use natural ambience without the shared score. Official game trailers preload during Road and replace local posters only after playback is confirmed.
+Spawn uses a dark background and circular purple portal. Later exits have opaque arched portals and connected passages. Road spans 72 scene units; indoor chapters span 36. The bike fades before its exit. Auditorium applause occurs once per visit after three seconds. Road and Campfire use natural ambience without the shared score.
 
 ## Latest refinement
 
-- README rebuilt with GitHub-friendly HTML, an original SVG cover, chapter/product guides, setup, controls, maintenance paths and asset credits.
-- Asset preparation uses repository-local inputs and runs before both development and production builds.
-- Git ignores generated delivery images, builds, dependencies, caches, local QA and obsolete local history. Duplicate logo copies, unused landscape delivery images and old generated QA output were removed. Original artwork and historical design notes were retained locally; unused ones are ignored.
-- Campfire moon has a procedural crater/maria texture, directional shading and a restrained radial halo.
-- Projects has two aimed uplights per logo, soft visible beams and light-responsive logo materials. Ambient, environment and broad room lighting are reduced.
-- Spawn portal is raised and scaled to clear the floor; its soft aura no longer depth-clips against the ground.
-- Campfire removes the duplicate displayed email address and places social links directly below its actions. Let's talk remains a mail link.
+- Entry now uses a lazy Three.js orbital scene: locally served 4K NASA Earth surface, independent clouds, relief, night lights and atmosphere, an original satellite with a continuous elliptical orbit, small point stars and brief meteor trails. It has bounded pixel ratio/frame cadence, a texture-loading timeout, and a textured fallback. The journey canvas mounts after entry; entry texture resources are released on departure.
+- Entry copy introduces the developer, connector and explorer. Gundu and his periodically appearing introduction sit at bottom-right. Jumping and vertical dance bouncing were removed. The primary action is Begin the journey; no sound-on-entry line appears.
+- Valid chapter URLs initialize directly at that chapter with sound muted. Root and invalid initial URLs show the entry gate. The camera starts at the destination without sweeping through earlier chapters.
+- Lightweight mode uses original vector scenes for the portal, workstation, product gallery, auditorium, Road landscapes, gaming room and campfire. The companion remains 3D where graphics are available.
+- Tunnel dimming is separate from the room baselines in sceneLighting.ts. DevLab, auditorium, Projects and Arcade retain their earlier ambient, directional and reflected light levels. Passage surfaces and guide lighting stay dim. Road daylight and moonlight receive a small lift; Campfire keeps its existing lighting.
+- Arcade warms muted publisher players before Road. Their projected screens become visible when the actual camera crosses the end of the Road-to-Arcade arch, without requiring proximity to the monitors. Posters remain until playback is confirmed.
+- The Spawn portrait fades out before crossing its portal, independently of chapter copy. Road uses sloped terrain, layered hills, textured leaf sprays, grounded vegetation, continuous asphalt, a hillside cascade and a stone cave entrance. The lake has a shaped shoreline, subtle animated reflection shading and a lakeside seat; grass stays on the dry banks. Midnight headlight illumination lands on the near road.
+- Project dialogs use a wider overview/workspace layout with selectable flow stages and system tabs. Standard desktop and phone layouts fit without scrolling; extremely short or zoomed layouts retain an accessibility scrolling fallback. Briefing/anime and other scrollable dialogs have styled scrollbars.
 
 ## Verification performed
 
-- `npm test`: 36 tests passed across nine files.
+- `npm test`: 80 tests passed across 20 files, including room-light baselines, portrait portal timing, dry lake banks, orbital continuity, chapter URL entry, passage dimming and the Arcade entrance boundary.
 - `npm run build`: TypeScript and production build passed.
-- A separate copy of the Git-publishable file set built successfully, regenerating ignored delivery assets from local originals. This reused installed dependencies through a junction; it was not a new network installation of npm packages.
-- README local links and anchors resolved against that publishable file set; its SVG cover loaded in a local HTML preview. The preview approximates GitHub formatting, not GitHub's actual renderer.
-- Chrome using Windows D3D11: inspected Spawn, Projects and Campfire at 1139 × 590, plus Spawn and Campfire at 390 × 667. No page errors or page overflow were observed in these checks. The lower Spawn portal rim, paired project beams and tighter contact layout were inspected visually.
-- Code review found no important defects in the latest changes.
+- Chrome using Windows D3D11: inspected entry at desktop, laptop, 390 x 667 phone and 667 x 375 landscape sizes. No page overflow or runtime page errors were observed in those checks.
+- Fresh and reloaded valid chapter URLs opened their destination directly. A fresh invalid chapter URL was cleared and showed the entry. A deliberately stalled Earth texture fell back after the bounded timeout with the entry action enabled.
+- Inspected all lightweight chapter illustrations and the three Road scenes. This was visual QA, not an exhaustive mobile-device benchmark.
+- Project flow stages and system tabs were checked on laptop and phone. Short landscape spacing was refined. Briefing's scrollbar styling and scrolling were checked in-browser.
+- Actual YouTube player messages reported all three desktop trailers playing while hidden during Road, and all three were visible and still playing as the camera crossed into Arcade. No runtime page errors occurred during this check.
+- Code review identified no important remaining defects in the refinement; its entry texture-cache cleanup finding was addressed.
 
-Prior checks in this session covered connected passages, audio routing, applause timing/cancellation, mute and muted trailer playback. They are not a claim of exhaustive device coverage or guaranteed external-player startup. This refinement did not change those audio/video behaviours.
+- Follow-up lighting correction: inspected restored DevLab, auditorium and Arcade in desktop Chrome; checked all three revised Road views, lake on a 390 x 667 viewport, and portrait visibility before/inside the Spawn passage. No page errors or phone horizontal overflow were observed.
 
 ## Boundaries
 
-No commit, push or deployment was performed. Browser-wide frame-rate guarantees and a complete mobile performance benchmark are not claimed. Third-party trailers depend on browser/network/provider availability. Source credits are in [ASSETS.md](ASSETS.md), with trailer details in [ARCADE_MEDIA.md](ARCADE_MEDIA.md).
+No commit, push or deployment was performed for this refinement. Browser-wide frame-rate guarantees and a complete mobile performance benchmark are not claimed. Third-party trailers depend on browser/network/provider availability, so a cold or blocked provider can still delay playback. Source credits are in [ASSETS.md](ASSETS.md), with trailer details in [ARCADE_MEDIA.md](ARCADE_MEDIA.md).
