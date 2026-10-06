@@ -12,6 +12,8 @@ DARSHAN.WORLD uses optional Google Analytics 4 to measure settled chapter visits
 - Reporting timezone: India, UTC+05:30; currency: INR.
 - Objectives: understand traffic and engagement; no sales objective or advertising integration.
 - Optional account data-sharing checkboxes were disabled during setup.
+- `contact_click` and `resume_open` are key events, counted once per session without a monetary value.
+- Event-scoped custom dimensions: **Portfolio chapter** (`chapter`) and **Portfolio project** (`project`).
 
 [Open this property's dashboard](https://analytics.google.com/analytics/web/#/a410910506p557635899/reports/intelligenthome).
 
@@ -59,6 +61,8 @@ Enhanced Measurement browser-history page views are disabled because the applica
 Unit checks cover production/domain gating, browser opt-outs, explicit preference values, pre-consent script suppression, withdrawal/re-enabling, deduplicated views, sanitized metadata, labeled link events and transport failure isolation.
 
 For a live check, open the custom domain, allow analytics, enter the journey and open a project. Inspect **Reports → Realtime** for `page_view`, `journey_start` and `project_open`. Standard reports can appear later. Blockers, browser preferences and declined consent can correctly produce no events.
+
+On October 6, 2026, commit `ac67788` deployed successfully to the existing custom domain. Chrome checks confirmed no Analytics tag before consent, the correct tag after consent, and no tag after withdrawal/reload. Realtime displayed actual page views, journey entry and briefing events from the verification session. This session is verification traffic, not a claim of organic visitors. No runtime errors were reported during those checks.
 
 Implementation: [`analytics.ts`](../src/lib/analytics.ts), [`AnalyticsPrivacy.tsx`](../src/components/AnalyticsPrivacy.tsx) and event hooks in [`App.tsx`](../src/App.tsx).
 

@@ -1,5 +1,6 @@
 import { worlds, type WorldId } from '../data/worlds';
 import { profile } from '../data/profile';
+import { projects } from '../data/projects';
 
 type Parameters = Record<string, string | number | boolean>;
 type Command = (...args: unknown[]) => void;
@@ -60,6 +61,14 @@ export function portfolioLinkEvent(href: string): { name: AnalyticsEvent; parame
   if (href === `mailto:${profile.email}`) return { name: 'contact_click', parameters: { method: 'email' } };
   const social = profile.socials.find(item => item.url === href);
   return social ? { name: 'social_click', parameters: { network: social.name } } : null;
+}
+export function portfolioModalEvent(modal: string): { name: AnalyticsEvent; parameters: Parameters } | null {
+  const match = /^project-(\d+)$/.exec(modal);
+  const project = match ? projects[Number(match[1])] : null;
+  if (project) return { name: 'project_open', parameters: { project: project.id } };
+  if (modal === 'briefing') return { name: 'briefing_open', parameters: {} };
+  if (modal === 'anime') return { name: 'anime_archive_open', parameters: {} };
+  return null;
 }
 
 declare global {

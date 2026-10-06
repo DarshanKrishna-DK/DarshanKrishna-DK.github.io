@@ -1,5 +1,5 @@
 import { afterEach, expect, it, vi } from 'vitest';
-import { analyticsEnabled, browserAnalytics, parseAnalyticsChoice, PortfolioAnalytics, portfolioLinkEvent, type AnalyticsSettings } from './analytics';
+import { analyticsEnabled, browserAnalytics, parseAnalyticsChoice, PortfolioAnalytics, portfolioLinkEvent, portfolioModalEvent, type AnalyticsSettings } from './analytics';
 import { profile } from '../data/profile';
 
 const settings: AnalyticsSettings = {
@@ -7,6 +7,12 @@ const settings: AnalyticsSettings = {
   allowedHosts: ['darshan-krishna-dk.me'], referrer: 'https://example.com/recruiter?email=private@example.com',
 };
 afterEach(()=>{vi.unstubAllGlobals();vi.unstubAllEnvs();});
+it('maps every real product dialog to its Analytics event and ignores unrelated dialogs',()=>{
+  ['sahay','zuik','swyftpay'].forEach((project,index)=>expect(portfolioModalEvent(`project-${index}`)).toEqual({name:'project_open',parameters:{project}}));
+  expect(portfolioModalEvent('briefing')).toEqual({name:'briefing_open',parameters:{}});
+  expect(portfolioModalEvent('anime')).toEqual({name:'anime_archive_open',parameters:{}});
+  expect(portfolioModalEvent('project-99')).toBeNull();expect(portfolioModalEvent('map')).toBeNull();
+});
 it('loads no tag before consent, cancels a pending load on withdrawal and can be enabled again',()=>{
   vi.stubEnv('PROD',true);vi.stubEnv('VITE_GA_MEASUREMENT_ID',settings.measurementId);
   let saved:string|null=null;
