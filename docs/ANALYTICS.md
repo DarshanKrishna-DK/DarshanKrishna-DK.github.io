@@ -64,6 +64,8 @@ For a live check, open the custom domain, allow analytics, enter the journey and
 
 On October 6, 2026, commit `ac67788` deployed successfully to the existing custom domain. Chrome checks confirmed no Analytics tag before consent, the correct tag after consent, and no tag after withdrawal/reload. Realtime displayed actual page views, journey entry and briefing events from the verification session. This session is verification traffic, not a claim of organic visitors. No runtime errors were reported during those checks.
 
+Follow-up commit `e1d3f98` records dialog opens directly in their UI action. All 88 tests across 21 files and the production build passed; its Vercel production deployment reached READY. Realtime also confirmed `project_open` after the production interaction check. The privacy dialog fit a 390 × 667 viewport without horizontal overflow. Resume, email, social, anime and Road event mappings are implemented and unit-tested; those event types were not individually exercised in Realtime.
+
 Implementation: [`analytics.ts`](../src/lib/analytics.ts), [`AnalyticsPrivacy.tsx`](../src/components/AnalyticsPrivacy.tsx) and event hooks in [`App.tsx`](../src/App.tsx).
 
 References: [Manual page views](https://developers.google.com/analytics/devguides/collection/ga4/views), [SPA measurement](https://developers.google.com/analytics/devguides/collection/ga4/single-page-applications), [privacy controls](https://developers.google.com/tag-platform/security/guides/privacy), [Google's use of partner-site data](https://policies.google.com/technologies/partner-sites).

@@ -40,4 +40,6 @@ Analytics verification: 87 tests passed across 21 files; TypeScript and producti
 
 ## Boundaries
 
+Analytics follow-up: `e1d3f98` moved product, briefing and anime-open tracking into the common dialog-opening action. All 88 tests and the production build passed; the deployment reached READY. Chrome also checked the privacy dialog at 390 × 667 without horizontal overflow. Live Realtime verification covered chapter views, journey entry, briefing opens and project opens. Other custom event types were not individually verified in that report.
+
 No commit, push or deployment was performed for this refinement. Browser-wide frame-rate guarantees and a complete mobile performance benchmark are not claimed. Third-party trailers depend on browser/network/provider availability, so a cold or blocked provider can still delay playback. Source credits are in [ASSETS.md](ASSETS.md), with trailer details in [ARCADE_MEDIA.md](ARCADE_MEDIA.md).
