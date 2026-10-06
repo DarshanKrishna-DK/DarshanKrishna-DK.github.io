@@ -20,6 +20,8 @@ import { companionState, maySpeak } from './lib/companion';
 import { Ambience } from './lib/audio';
 import { boundedReadiness,graphicsAvailable } from './lib/readiness';
 import { GraphicsBoundary } from './components/GraphicsBoundary';
+import { analytics, portfolioLinkEvent } from './lib/analytics';
+import { AnalyticsPrivacy } from './components/AnalyticsPrivacy';
 
 const WorldCanvas = lazy(()=>import('./scene/WorldCanvas'));
 type Manifest={portrait:boolean;cutout:boolean;bike:boolean;resume:boolean};
@@ -41,6 +43,19 @@ export default function App() {
   const audio=useRef<Ambience|null>(null);const interaction=useRef(Date.now());const lastSpoke=useRef(-20000);const lineTimer=useRef<ReturnType<typeof setTimeout>|null>(null);
   const {progress,speed,navigate,lastTravel,seek}=useJourney(entered,reduced,Boolean(modal));
   const index=sampleJourney(progress).index;
+  useEffect(()=>{
+    const timer=setTimeout(()=>analytics.pageView(entered?worlds[index].id:'entry'),900);
+    return()=>clearTimeout(timer);
+  },[entered,index]);
+  useEffect(()=>{
+    if(!modal)return;
+    if(modal.startsWith('project-'))analytics.event('project_open',{project:projects[Number(modal.split('-')[1])].id});
+    else if(modal==='briefing')analytics.event('briefing_open');
+    else if(modal==='anime')analytics.event('anime_archive_open');
+  },[modal]);
+  useEffect(()=>{
+    if(entered&&index===4)analytics.event('travel_story_view',{story:['ride','midnight_ghats','lake_reset'][roadBeat]});
+  },[entered,index,roadBeat]);
   const close=useCallback(()=>setModal(null),[]);
   const ready=useCallback(()=>setSceneReady(true),[]);
   const fail=useCallback(()=>{setLightweight(true);setSceneReady(true);},[]);
@@ -91,7 +106,7 @@ export default function App() {
     };window.addEventListener('keydown',key);return()=>window.removeEventListener('keydown',key);
   },[entered,modal,index,navigate]);
   async function toggleSound(){try{if(muted){await audio.current?.start();setMuted(false);}else{audio.current?.setMuted(true);setMuted(true);}setAudioError(false);}catch{setAudioError(true);setMuted(true);}}
-  async function enter(sound:boolean){interaction.current=Date.now();setIdle(0);setEntered(true);if(sound)await toggleSound();}
+  async function enter(sound:boolean,mode=lightweight?'lightweight':'cinematic'){analytics.event('journey_start',{mode,sound});interaction.current=Date.now();setIdle(0);setEntered(true);if(sound)await toggleSound();}
   const selectProject=useCallback((i:number)=>{setProject(i);speak(projectDialogue[i],true);},[speak]);
   async function copyEmail(){try{await navigator.clipboard.writeText(profile.email);setCopied(true);setTimeout(()=>setCopied(false),2500);}catch{setCopied(false);}}
   function talkDuck(){interaction.current=Date.now();setQuacking(true);audio.current?.quack();if(quackTimer.current)clearTimeout(quackTimer.current);quackTimer.current=setTimeout(()=>setQuacking(false),1300);setClicks(c=>c+1);speak(clickDialogue[Math.min(Math.floor(clicks/2),clickDialogue.length-1)],true);setTimeout(()=>setClicks(0),8000);}
@@ -101,10 +116,10 @@ export default function App() {
   const portrait=manifest.cutout?'/assets/portrait-cutout.webp':'/assets/portrait.webp';
   const modalTitle=modal==='map'?'Choose your next world':modal==='briefing'?'The 60-second briefing':modal==='community'?'People make the difference':modal==='work'?'The work behind the title':modal==='agents'?'A builder with a very good PA':modal==='game'?'BotLifeMatters · the side quest':modal==='anime'?'Anime Archive':modal?.startsWith('project-')?projects[Number(modal.split('-')[1])].name:'';
 
-  return <div className={`app ${entered?'entered':''} ${lightweight?'lightweight':''} ${reduced?'reduced-motion':''}`} data-world={worlds[index].id}>
+  return <div className={`app ${entered?'entered':''} ${lightweight?'lightweight':''} ${reduced?'reduced-motion':''}`} data-world={worlds[index].id} onClickCapture={e=>{const anchor=(e.target as Element).closest('a');if(anchor){const event=portfolioLinkEvent(anchor.href);if(event)analytics.event(event.name,event.parameters);}}}>
     {import.meta.env.DEV&&entered&&new URLSearchParams(location.search).has('scene-review')&&<label style={{position:'fixed',top:68,left:20,zIndex:100,fontSize:13,padding:8,background:'#101a2bd9',borderRadius:8}}>Camera chapter <input aria-label="Camera chapter" type="number" min="0" max="6" step="0.05" value={Number((progress*6).toFixed(3))} onChange={e=>seek(Number(e.target.value))} style={{width:65,marginLeft:8}}/></label>}
     <div className="scene-layer" aria-hidden="true">{lightweight&&<LightweightScene world={index} beat={roadBeat} project={project}/>} {!lightweight && entered && <GraphicsBoundary onFailure={fail}><Suspense fallback={null}><WorldCanvas progress={progress} reduced={reduced} roadBeat={roadBeat} project={project} onProject={selectProject} onReady={worldRendered} onFailure={fail} paused={Boolean(modal)||!entered}/></Suspense></GraphicsBoundary>}<div className="scene-vignette"/><div className="scene-grain"/><div className="spatial-grid"/></div>
-    {bootVisible&&<Boot loaded={loaded+(sceneReady?1:0)} total={7} onEnter={enter} onLightweight={()=>{setLightweight(true);void enter(true);}} reduced={reduced} onReady={ready} onGraphicsFailure={fail} failures={failures} exiting={entered}/>}{entered&&<>
+    {bootVisible&&<Boot loaded={loaded+(sceneReady?1:0)} total={7} onEnter={enter} onLightweight={()=>{setLightweight(true);void enter(true,'lightweight');}} reduced={reduced} onReady={ready} onGraphicsFailure={fail} failures={failures} exiting={entered}/>}{entered&&<>
 
       <a className="skip-link" href="#world-content" onClick={e=>{e.preventDefault();document.getElementById('world-content')?.focus({preventScroll:true});}}>Skip to current world content</a>
       <Hud index={index} progress={progress} muted={muted} lightweight={lightweight} onMap={()=>setModal('map')} onBriefing={()=>setModal('briefing')} onMute={()=>void toggleSound()} onMode={()=>setLightweight(l=>!l)} navigate={navigate}/>
@@ -124,5 +139,6 @@ export default function App() {
         {(modal==='briefing'||modal==='community')&&<div className="dialog-contact"><span>{profile.email}</span><button className="icon-button" onClick={()=>void copyEmail()} aria-label="Copy email address">{copied?<Check size={17}/>:<Copy size={17}/>}</button>{copied&&<span role="status">Copied</span>}</div>}
       </Dialog>}
     </>}
+    <AnalyticsPrivacy/>
   </div>;
 }

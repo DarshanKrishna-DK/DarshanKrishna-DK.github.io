@@ -10,5 +10,6 @@ import './styles/refinement.css';
 import './styles/entry.css';
 import './styles/scenery.css';
 import './styles/modal-polish.css';
+import './styles/analytics.css';
 import App from './App';
 createRoot(document.getElementById('root')!).render(<App/>);

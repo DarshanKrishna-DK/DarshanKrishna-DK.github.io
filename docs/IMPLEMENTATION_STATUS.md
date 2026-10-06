@@ -32,6 +32,12 @@ Spawn uses a dark background and circular purple portal. Later exits have opaque
 
 - Follow-up lighting correction: inspected restored DevLab, auditorium and Arcade in desktop Chrome; checked all three revised Road views, lake on a 390 x 667 viewport, and portrait visibility before/inside the Spawn passage. No page errors or phone horizontal overflow were observed.
 
+## Google Analytics integration
+
+The dedicated GA4 account, property and web stream were created in the owner's signed-in Chrome session after approval of Google's mandatory size category and terms. Measurement ID: `G-M201033Q4E`. Production-only settings were added to the existing Vercel project. Local code measures chapter visits, project/briefing/anime opens, journey entry, Road stories, resume, email and social actions. Analytics requires visitor opt-in, respects Do Not Track and Global Privacy Control, disables advertising features and avoids personal information in custom event parameters. Browser-history and other automatic Enhanced Measurement events were disabled to avoid duplicate views and autoplay noise. See [ANALYTICS.md](ANALYTICS.md).
+
+Analytics verification: 87 tests passed across 21 files; TypeScript and production build passed. Privacy disclosure and inactive localhost tracking were checked in Chrome. Activation on the live site and Realtime delivery are being verified separately.
+
 ## Boundaries
 
 No commit, push or deployment was performed for this refinement. Browser-wide frame-rate guarantees and a complete mobile performance benchmark are not claimed. Third-party trailers depend on browser/network/provider availability, so a cold or blocked provider can still delay playback. Source credits are in [ASSETS.md](ASSETS.md), with trailer details in [ARCADE_MEDIA.md](ARCADE_MEDIA.md).

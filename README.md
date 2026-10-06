@@ -195,7 +195,8 @@ artifacts/              Local QA captures and source downloads; ignored</code></
   <a href="DESIGN.md"><strong>Design system</strong></a> &nbsp; · &nbsp;
   <a href="docs/IMPLEMENTATION_STATUS.md"><strong>Verification notes</strong></a> &nbsp; · &nbsp;
   <a href="docs/ASSETS.md"><strong>Asset provenance</strong></a> &nbsp; · &nbsp;
-  <a href="docs/ARCADE_MEDIA.md"><strong>Arcade media</strong></a>
+  <a href="docs/ARCADE_MEDIA.md"><strong>Arcade media</strong></a> &nbsp; · &nbsp;
+  <a href="docs/ANALYTICS.md"><strong>Analytics &amp; privacy</strong></a>
 </p>
 
 <p>Third-party artwork, videos, fonts and recordings retain their respective rights and licenses. Source credits are documented in the asset notes. Project repository links are intentionally absent from the visitor experience.</p>
